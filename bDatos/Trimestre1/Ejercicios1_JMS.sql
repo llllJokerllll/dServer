@@ -85,9 +85,9 @@ CREATE TABLE tbl_Piso (
 
 CREATE TABLE tbl_Contador (
 	codContador nvarchar(10) NOT NULL CONSTRAINT pk_tbl_Contador PRIMARY KEY,
-	modelo varchar(3) NOT NULL,
-	codPiso nvarchar(10) NOT NULL,
-	CONSTRAINT fk_Contador_Piso FOREIGN KEY(codPiso) REFERENCES tbl_Piso(codPiso) ON DELETE NO ACTION ON UPDATE CASCADE,
+	modelo varchar(3) NOT NULL CONSTRAINT ck_tbl_Contador CHECK (modelo IN ('aeg235', 'samsung20', 'aeg55') ),
+	codPiso nvarchar(10) NOT NULL CONSTRAINT uq_tbl_Contador_codPiso UNIQUE,
+	CONSTRAINT fk_Contador_Piso FOREIGN KEY(codPiso) REFERENCES tbl_Piso(codPiso) ON DELETE NO ACTION ON UPDATE CASCADE, 
 );
 
 CREATE TABLE tbl_Estudante (
@@ -111,4 +111,11 @@ CREATE TABLE tbl_Opina (
 	CONSTRAINT fk_Opina_Modulo FOREIGN KEY(codModulo) REFERENCES tbl_Modulo(codModulo) ON DELETE NO ACTION,
 );
 
+-- Como meter un alter table
+-- ALTER TABLE tbl_Opina ADD/MODIFY/DROP CONSTRAINT fk_Opina_Profesor FOREIGN KEY(idProfesor) REFERENCES tbl_Profesor(idProfesor) ON DELETE NO ACTION ON UPDATE CASCADE;
+
 DROP TABLE tbl_Opina;
+
+CREATE INDEX idx_tbl_Empregado_apelido1 ON tbl_Empregado(apelido1);
+
+DROP INDEX idx_tbl_Empregado_apelido1;
