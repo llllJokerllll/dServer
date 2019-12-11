@@ -45,6 +45,7 @@ SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS;
 --Obtención restricciones integridad referencial
 SELECT * FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS;
 
+
 --USE master;
 --DROP DATABASE db_prueba;
 
@@ -54,6 +55,11 @@ SELECT nombre FROM tbl_empleados;
 
 --Mostrar restricciones
 EXEC sp_helpconstraint tbl_empleados;
+
+--Mostrar despues de sentencias ALTER
+EXEC sp_helpdb bd_prueba;
+
+SELECT * FROM sys.databases;_
 
 --Insertar dentro de una tabla
 INSERT INTO tbl_empleados VALUES('nmop','Luisa','Blanco','Blanco','1967-02-21', '456');
@@ -79,8 +85,17 @@ CREATE TABLE tbl_oficina (
 	telefono char(9) NOT NULL,
 	ciudad nvarchar(20) NOT NULL,
 	CONSTRAINT pk_tbl_oficina PRIMARY KEY(codOficina),
-	CONSTRAINT uq_tbl_oficina_ciudad UNIQUE(ciudad), --Una oficina SOLO puede estar en una ciudad y las ciudades no se peuden repetir
+	CONSTRAINT uq_tbl_oficina_ciudad UNIQUE(ciudad), --Una oficina SOLO puede estar en una ciudad y las ciudades no se peuden repetir.
 );
 
---Para añadir una restricción tras crear una tabla
+--Para añadir una restricción tras crear una tabla.
 ALTER TABLE tbl_oficina ADD CONSTRAINT df_tbl_oficina_codPostal DEFAULT '32001' FOR codPostal;
+
+--Para borrar una restricción ya creada.
+ALTER TABLE tbl_oficina DROP CONSTRAINT df_tbl_oficina_codPostal;
+
+--Para añadir una columna a una tabla ya creada.
+ALTER TABLE tbl_oficina ADD sexo varchar(50) NOT NULL;
+
+--Para borrar una columna de una tabla, importante eliminar cualquier tipo de restriccion asociada a dicha columna antes de borrar.
+ALTER TABLE tbl_oficina DROP COLUMN codPostal;
