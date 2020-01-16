@@ -1,0 +1,27 @@
+use tendabd;
+select clt_nome , clt_apelidos from clientes;
+select * from tendas;
+select prv_nome from provedores;
+select clt_poboacion from clientes;
+select art_pv , art_pv*1.1 from artigos;
+select clt_id , clt_apelidos, clt_nome from clientes where clt_poboacion = 'Madrid';
+select art_codigo , art_nome , art_peso from artigos where art_peso > 500;
+select * from artigos where art_pv >= art_pc*2;
+select clt_apelidos , clt_nome , clt_poboacion , clt_desconto from clientes where clt_poboacion like "Asturias" and clt_desconto > 2 or clt_poboacion like "Asturias" and clt_desconto = 0 or clt_poboacion like "Valencia" and clt_desconto > 2 or clt_poboacion like "Valencia" and clt_desconto = 0;
+select * from artigos where art_color like "negro" and art_peso > 5000;
+select * from artigos where art_color != "negro" or art_peso <= 5000;
+select * from artigos where art_color like "negro" and art_peso > 100 or art_color like "cyan";
+select * from artigos where art_pc >= 12 and art_pc <= 18;
+select * from artigos where art_color like "negro" or art_color like "cyan";
+select * from clientes where clt_apelidos like "RO%";
+select * from clientes where clt_nome like "B%%%A";
+select * from artigos where art_color is null;
+select * from artigos order by art_peso desc;
+select art_codigo , art_nome , art_pc , art_pv , art_pv-art_pc as "Marxe" from artigos where art_pc > 3000 order by "Marxe";
+select art_nome , art_provedor , art_stock , art_peso from artigos where art_peso <= 1000 order by art_provedor , art_stock desc;
+select clt_nome , clt_apelidos from clientes where clt_apelidos like "F%Z";
+select * from artigos where art_nome like "%LED%";
+select * from artigos where art_nome like "CABI%";
+select * from artigos;
+select * from clientes where clt_apelidos like "a%" or clt_apelidos like "f%";
+select 
