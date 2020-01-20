@@ -22,7 +22,7 @@ select clt_nome , clt_apelidos from clientes where clt_apelidos like "F%Z";
 select * from artigos where art_nome like binary "%LED%";
 select * from artigos where art_nome like binary "CABI%";
 select * from artigos;
-select * from clientes where clt_apelidos like "a%" or clt_apelidos like "f%";
+select * from clientes where clt_apelidos like "a%" or clt_apelidos like "f%" or clt_apelidos like "% a%" or clt_apelidos like "% f%";
 select * from clientes where clt_apelidos not like "a%" and clt_apelidos not like "b%" and clt_apelidos not like "c%" and clt_apelidos not like "d%";
 select * from artigos where art_pv like "%.00";
 select * from clientes where clt_nome like "_____";
