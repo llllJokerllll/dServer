@@ -12,4 +12,16 @@ select concat(a.clt_apelidos,',', a.clt_nome) as 'NomeCliente', b.art_nome, c.de
 
 use traballadores;
 select a.depNumero, a.depNome, b.empNome from departamento a join empregado b on a.depDirector = b.empNumero where a.depDepende is null;
-select a.empNome, b.cenEnderezo, c.depNome, from empregado a join centro b join departamento c on (a.empDepartamento = c.depNumero and b.depCentro = c.cenNumero) where a.empNome regexp '^*,\\s[A]%';
+select right(a.empNome, length(a.empNome) - locate(',', a.empNome)) as 'Nome', b.cenEnderezo, c.depNome from empregado a join centro b join departamento c on (a.empDepartamento = c.depNumero and c.depCentro = b.cenNumero) where a.empNome like '%, A%';
+select a.depNome, b.empNome as 'NomeEmpleado', b.empSalario as 'SalarioEmpleado', c.empNome as 'NomeDirector', c.empSalario as 'SalarioDirector', c.empSalario-b.empSalario as 'Diferencia' from departamento a join empregado b join empregado c on (a.depNumero = b.empDepartamento and c.empNumero = a.depDirector) where b.empNumero != a.depDirector order by a.depNome;
+
+/*Aquí comprobamos la diferencia entre usar left join y right join*/
+insert into empregado () values (666,1100,550,'1953-03-12','1996-11-01','2000.00',null,1,'LAGUNA, LAURA');
+select e.empNome, d.depNome from empregado e left join departamento d on (e.empDepartamento = d.depNumero);
+select e.empNome, d.depNome from empregado e right join departamento d on (e.empDepartamento = d.depNumero);
+
+use tendabd;
+select c.clt_id, c.clt_apelidos, c.clt_nome, ifnull(v.ven_data,'SEN COMPRAS') as 'FechaCompra' from clientes c left join vendas v on c.clt_id = v.ven_cliente where c.clt_id <= 10;
+/*Aquí realizamos una subconsulta utilizando el "not in"*/
+select distinct pro_nome from provincias where pro_id not in (select distinct left(clt_cp,2) from clientes);
+select distinct e.emp_id, e.emp_apelidos, e.emp_nome, if(v.ven_data is null, 'No', 'Si') as 'DataVenda' from empregados e left join vendas v on e.emp_id = v.ven_empregado;
