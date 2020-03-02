@@ -10,4 +10,9 @@ select a.art_codigo, a.art_nome, a.art_pv, p.prv_nome from artigos a join proved
 use traballadores;
 select empNome, empSalario from empregado where empSalario > all(select empSalario from empregado where empDepartamento = 122) order by 1;
 select empNome, empSalario from empregado where empSalario >= (select empSalario from empregado where empNome like 'FIERRO, CLAUDIA') order by 2;
-select empNome, empSalario from empregado join empregado e where empSalario >= (empSalario empNome like 'FIERRO, CLAUDIA') order by 2;
+select e1.empNome, e1.empSalario from empregado e1 join empregado e2 on e2.empNome like 'FIERRO, CLAUDIA' where e1.empSalario >= e2.empSalario order by 2;
+select depNome, depPresuposto from departamento where depPresuposto = (select max(depPresuposto) from departamento) or depPresuposto = (select min(depPresuposto) from departamento);
+select e.empNumero, e.empNome, e.empDataIngreso, d.depNome from empregado e join departamento d on e.empDepartamento = d.depNumero where empDataIngreso = (select min(empDataingreso) from empregado);
+select empNome, empSalario from empregado where empDataIngreso > '1988-1-1' or (empDataIngreso < '1988-1-1' and empSalario < (select avg(empSalario) from empregado));
+insert into empregado() values (610,110,760,'1953-03-12','1995-11-01','2000.00',null,1,'CABANILLAS, RAMON');
+select count(*), empExtension from empregado group by empExtension having count(*) = (select count(*) from empregado group by empExtension order by 1 desc limit 1);
