@@ -16,3 +16,13 @@ select e.empNumero, e.empNome, e.empDataIngreso, d.depNome from empregado e join
 select empNome, empSalario from empregado where empDataIngreso > '1988-1-1' or (empDataIngreso < '1988-1-1' and empSalario < (select avg(empSalario) from empregado));
 insert into empregado() values (610,110,760,'1953-03-12','1995-11-01','2000.00',null,1,'CABANILLAS, RAMON');
 select count(*), empExtension from empregado group by empExtension having count(*) = (select count(*) from empregado group by empExtension order by 1 desc limit 1);
+
+use tendabd;
+select art_nome, art_pv from artigos where art_pv between (select art_pv from artigos where art_codigo = 0713242) and (select avg(art_pv) from artigos);
+use traballadores;
+select e.empNome, e.empDepartamento from empregado e join departamento d on e.empDepartamento = d.depNumero where d.depPresuposto between (select depPresuposto from departamento where depNumero = 122) and (select depPresuposto from departamento where depNumero = 121) order by 2;
+
+use tendabd;
+select * from provedores where prv_id in (select distinct art_provedor from artigos where art_color like 'negro') group by 1;
+select clt_id, concat(clt_apelidos,", ",clt_nome) as "Apelidos e Nome" from clientes where clt_id in (select ven_cliente from vendas group by ven_cliente having count(*) = 1) order by 1;
+select clt_id, clt_nome from clientes where clt_id in (select ven_cliente from vendas where ven_data > (select max(ven_data) from vendas where ven_cliente = 6));
