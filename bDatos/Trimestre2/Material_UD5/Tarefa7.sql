@@ -26,3 +26,10 @@ use tendabd;
 select * from provedores where prv_id in (select distinct art_provedor from artigos where art_color like 'negro') group by 1;
 select clt_id, concat(clt_apelidos,", ",clt_nome) as "Apelidos e Nome" from clientes where clt_id in (select ven_cliente from vendas group by ven_cliente having count(*) = 1) order by 1;
 select clt_id, clt_nome from clientes where clt_id in (select ven_cliente from vendas where ven_data > (select max(ven_data) from vendas where ven_cliente = 6));
+select distinct e.emp_nome from empregados e join tendas t on e.emp_id=t.tda_xerente where tda_id in (select distinct ven_tenda from vendas);
+select sum(dev_cantidade * dev_prezo_unitario) as 'PrezoTotal' from detalle_vendas where dev_venda in (select ven_id from vendas where ven_cliente in (select clt_id from clientes where clt_nome like 'LEANDRO' and clt_apelidos like 'FERREIRO BENITEZ'));
+select emp_id, emp_apelidos, emp_nome from empregados where emp_id not in (select ven_empregado from vendas);
+
+use traballadores;
+select d.depNumero, count(e.empDepartamento) from departamento d join empregado e on d.depNumero=e.empDepartamento where d.depPresuposto > 36000 group by 1;
+select d.depNome, e.empNome from departamento d join empregado e on d.depNumero = e.empDepartamento where d.depCentro in (select cenNumero from centro where cenNome like 'SEDE CENTRAL') order by 1, 2;
