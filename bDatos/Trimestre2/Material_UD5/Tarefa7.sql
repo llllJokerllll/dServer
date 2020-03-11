@@ -33,3 +33,40 @@ select emp_id, emp_apelidos, emp_nome from empregados where emp_id not in (selec
 use traballadores;
 select d.depNumero, count(e.empDepartamento) from departamento d join empregado e on d.depNumero=e.empDepartamento where d.depPresuposto > 36000 group by 1;
 select d.depNome, e.empNome from departamento d join empregado e on d.depNumero = e.empDepartamento where d.depCentro in (select cenNumero from centro where cenNome like 'SEDE CENTRAL') order by 1, 2;
+select count(empnumero) as 'Empleados', sum(empsalario) as 'Suma salarios', sum(ifnull(empcomision,0)) as 'Comisiones' , sum(empfillos) as 'Fillos' , empdepartamento from empregado where empdepartamento in (select distinct empdepartamento from empregado where empsalario>2000) group by empdepartamento;
+select empnome from empregado where empnumero in (select depdirector from departamento) order by empdepartamento;
+select e.empnome from empregado e join departamento d on e.empnumero=d.depdirector order by e.empdepartamento;
+select empnome, empdepartamento from empregado where empnumero in ( select depdirector from departamento where depcentro in (select cennumero from centro where cennome like 'S%') );
+select e.empnome, e.empdepartamento from empregado e join departamento d join centro c on e.empnumero=d.depdirector and d.depcentro=c.cennumero where c.cennome like 'S%';
+Select empnome, empsalario, empsalario*0.05 as 'Incremento', empsalario*1.05 as 'Salario final' from empregado where empnumero in ( select depdirector from departamento where deptipodirector like 'F' ) order by empnome;
+Select e.empnome, e.empsalario, e.empsalario*0.05 as 'Incremento', e.empsalario*1.05 as 'Salario final' from empregado e join departamento d on e.empnumero=d.depdirector where d.deptipodirector like 'F' order by e.empnome;
+select empnome, empsalario from empregado where empsalario > ( select avg(empsalario) from empregado where empnumero in (select depdirector from departamento where deptipodirector='F') );
+select empnome, empsalario+ifnull(empcomision,0) as 'Salario'
+from empregado 
+where (empsalario+ifnull(empcomision,0))>1500 and empdepartamento in
+(select d.depnumero from departamento d join centro c on d.depcentro=c.cennumero
+where c.cennome like 'RELACION CON CLIENTES')
+order by empdepartamento, 2, 1;
+select empnome, empsalario+ifnull(empcomision,0) as 'Salario'
+from empregado 
+where (empsalario+ifnull(empcomision,0))>1500 and empdepartamento in
+(select depnumero from departamento where depcentro in (
+select cennumero from centro where cennome like 'RELACION CON CLIENTES'))
+order by empdepartamento, 2, 1;
+select e.empnome, e.empsalario+ifnull(e.empcomision,0) as 'Salario'
+from empregado e join departamento d on e.empdepartamento=d.depnumero
+where (e.empsalario+ifnull(e.empcomision,0))>1500 and d.depcentro =
+(select cennumero from centro where cennome like 'RELACION CON CLIENTES')
+order by empdepartamento, 2, 1;
+select empnome, empdepartamento
+from empregado
+where empdepartamento in (select distinct empdepartamento 
+from empregado where empnome in ('pons, cesar','sanz, lavinia'));
+select e1.empnome, e1.empdepartamento
+from empregado e1 join empregado e2 on e1.empdepartamento=e2.empdepartamento
+where e2.empnome in ('pons, cesar','sanz, lavinia');
+
+use tendabd;
+select * from artigos a1 where exists (select a2.art_pv from artigos a2 where a1.art_pv>a2.art_pv and a2.art_color like 'negro');
+select a.art_nome from artigos a where a.art_color like 'Negro' and exists (select d.dev_artigo from detalle_vendas d where d.dev_artigo=a.art_codigo and d.dev_cantidade>5 );
+select distinct a.art_nome, a.art_color, a.art_codigo from artigos a join detalle_vendas d on d.dev_artigo=a.art_codigo where a.art_color like 'Negro'  and d.dev_cantidade>5 ;
