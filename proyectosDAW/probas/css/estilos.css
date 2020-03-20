@@ -1,0 +1,176 @@
+
+html, body{
+	font-size: 14px;
+	font-family: "Open Sans", Verdana, Geneva, sans-serif;	
+}
+
+#pe{
+	color: #A5A6AA;
+	background-color: #161C21;
+	padding: 1.2rem;
+}
+
+#cabeza{
+	background-image: url(../imaxes/fondo2.jpg);
+}
+
+/*Menú principal*/
+
+#cabezaMenu{
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+#cabezaMenu .navbar{
+	background-color: #F9F9FD;
+}
+
+#cabezaMenu ul.navbar-nav{
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#cabezaMenu ul.navbar-nav li a {
+	color:#248fd8; 
+}
+
+#cabezaMenu ul.navbar-nav li a:hover {
+	color:#2ea3f2;
+	text-decoration: underline; 
+}
+
+#cabezaMenu ul.navbar-nav li.active a {
+	color:#ef1a1a; 
+}
+
+/*Fin Menú principal*/
+
+
+/*Barra superior*/
+#topbar{
+	padding: 0.3rem 0 0 0;	
+	font-size: .85rem;
+	line-height: 2.1rem;
+	text-transform: none;
+	color: #FFFFFF;
+	background-color: #0c71c3;
+	letter-spacing: 1px;
+	/*position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100000;*/
+}
+
+#topbar a{
+	color: #FFFFFF;
+}
+#topbar a:hover{
+	color: #AAA;
+}
+
+#topbar .user-zone{	
+	/*text-align: right;*/
+}
+
+#topbar .user-zone i{
+	font-size: 1rem;
+	margin-left: 0.7rem;	
+}
+
+#topbar .social-icons{
+	margin-left: .8rem;	
+	display: inline-block;
+	font-size: 1rem;
+}
+
+#topbar .social-icons i{
+	margin-left: 0.5rem;	
+}
+
+/*Fin barra superior*/
+
+/*Barra inferior*/
+
+#pe{
+	padding: 0.3rem 0 0 0;		
+	text-transform: none;
+	color: #FFFFFF;
+	background-color: #0c71c3;
+	font-weight: bold;
+	line-height: 3.2rem;
+}
+/*Fin barra inferior*/
+
+/*#principal{
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+}*/
+
+h1, h2{
+	color:#30386A; 
+	font-size: 2.4rem;
+}
+
+h2{
+	font-size: 2.0rem;
+}
+
+div.informacion_columnas{
+	font-size: 4rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: '\000BB';
+}
+
+#breadcrumbs ol{	
+	background-color: transparent;
+	font-size: 90%;
+}
+
+/*Estilos para lateral*/
+
+#lateral{
+	border-left: 1px solid #E9E9E9;
+}
+
+#lateral .caixa{
+	padding: 0.8rem;
+	border: 1px solid #eee;
+	background-color: #FAFEFF;
+	border-radius: 0.5rem;
+	line-height: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+#lateral .direccion{
+	background-image: url("../imaxes/home_2.png");
+	background-repeat: no-repeat;
+	background-position: 95% 90%;
+	background-size: 40px;
+}
+
+#lateral .direccion h3, #lateral .sobremin h3{
+	font-size: 1rem;
+	/*color: #0095d1;*/
+	color: #30386A;
+	font-variant: small-caps;
+}
+
+#lateral .direccion p{
+	color: #888;
+	font-size: 90%;
+}
+
+#lateral .sobremin p{
+	color: #888;
+	font-size: 90%;
+	font-style: italic;
+}
+
+#lateral{	
+	color: DarkSlateGray;	
+}
+
+/*Fin estilos para lateral*/
