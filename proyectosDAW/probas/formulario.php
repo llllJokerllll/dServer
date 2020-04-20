@@ -49,10 +49,10 @@
 					<a class="navbar-brand" href="#"><img src="imaxes/logo.png" alt="Logotipo"/></a>
 					<div class="collapse navbar-collapse" id="menu-collapsado-1">
 						<ul class="navbar-nav mr-auto">
-							<li class="nav-item active">
+							<li class="nav-item">
 								 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item active">
 								 <a class="nav-link" href="formulario.php">Probas formulario</a>
 							</li>
 							<li class="nav-item">
@@ -63,17 +63,6 @@
 							</li>
 							<li class="nav-item">
 								 <a class="nav-link" href="#">Privado</a>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Formularios</a>
-								<div class="dropdown-menu">
-									<?php
-									include_once 'includes/utilidades.php';
-									foreach (voltarArquivos("./") as $ficheiro) {
-									    echo "<a class=\"dropdown-item\" href='$ficheiro'>$ficheiro</a>";
-									}
-									?>
-								</div>
 							</li>
 							<li class="nav-item dropdown">
 								 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Ligazóns privadas</a>
@@ -97,78 +86,96 @@
 				</nav>
 			</div>
 		</div>
-		<div class="row no-gutters" id="cabeza">
-			<div class="col-12">
-		<!-- Imaxe de cabeceira aleatoria -->
-				<!-- -->
-				<?php
-					$aleatorio = rand(1,6);
-				?>				
-				<div class="col-sm-12 px-lg-0" style="margin-bottom: 0rem;">
-					<div style="height: 400px; overflow: hidden;">
-						<img src="imaxes/cabeza/<?=$aleatorio?>.jpg" class="img-fluid">
-					</div>
-				</div>
-				
-				<!-- Fin Imaxe de cabeceira aleatoria -->	
-			</div>
+		<div class="row" id="breadcrumbs">
+			<nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>                
+                <li class="breadcrumb-item active" aria-current="page">Formulario</li>
+              </ol>
+            </nav>
 		</div>	
-		<!-- Zona de presentación e contacto -->
-		<div class="row pt-1 mb-5">
-        	<div class="col-md-8 pt-3">
-                <h1>Benvido</h1>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt voluptate. Voluptatum.</p>
-                <a class="btn btn-primary btn-lg" href="#">Botón de acción &raquo;</a>
+		<!-- Zona principal da páxina -->
+		<div class="row mb-5">
+			<!-- Contido -->
+        	<div class="col-md-8 col-lg-9">
+                <h1>Formulario</h1>
+                
+                <?php 
+                define("CARTAFOL_IMAXES", "./uploads/");
+                
+                if (isset($_REQUEST["envio"]) && $_REQUEST["envio"] == "1") {
+                    
+                    //$imaxe = $_REQUEST["imaxe"];
+                    //echo $imaxe;
+                    
+                    $rutaSubida = CARTAFOL_IMAXES . basename($_FILES["imaxe"]["name"]);
+                    $extensionImaxe = strtolower(pathinfo($rutaSubida, PATHINFO_EXTENSION));
+                    //if ($extensionImaxe == ".jpg" || $extensionImaxe == ".png") {
+                        //if ($_FILES["imaxe"]["size"] < 200000000) {
+                            move_uploaded_file($_FILES["imaxe"]["tmp_name"], $rutaSubida);
+                            print_r($_FILES["imaxe"]);
+                        //}
+                    //}
+                    
+                    $aficion = $_REQUEST["aficion"];
+                    print_r($aficion);
+                    
+                } else {
+                    
+                ?>
+                
+                <form action="<?= $_SERVER['PHP_SELF']?>" method="POST" enctype="multipart/form-data">
+                	<div class="form-group">
+                		<label for="imaxe">Subir ficheiro</label>
+                		<input type="file" name="imaxe" id="imaxe" class="form-control" accept=".jpg, .png"/>
+                	</div>
+                
+                	<div class="form-group">
+                		<div>Aficións</div>
+                		<div class="form-check">
+                			<input type="checkbox" class="form-check-input" id="cine" value="cine" name="aficion[]">
+                			<label for="cine">Cine</label>
+                		</div>
+                		<div class="form-check">
+                			<input type="checkbox" class="form-check-input" id="deporte" value="deporte" name="aficion[]">
+                			<label for="deporte">Deporte</label>
+                		</div>
+                		<div class="form-check">
+                			<input type="checkbox" class="form-check-input" id="videoxogos" value="videoxogos" name="aficion[]">
+                			<label for="videoxogos">Videoxogos</label>
+                		</div>
+                	</div>
+                
+                	<input type="hidden" name="envio" value="1"/>
+                	<button type="submit" class="btn btn-success">Enviar</button>
+                	<button type="reset" class="btn btn-warning">Borrar</button>
+                </form>
+                <?php 
+                } // else   
+                ?>
+                
           	</div>
-            <div class="col-md-4 pt-4">
-                <h2>Contacta con nós</h2>
-                <hr>
-                <address>
-                	<strong>Daw Dual</strong>
-                  	<br>CIFP A Carballeira
-                  	<br>Praza da Lexión, 32002 - Ourense
-                  	<br>
-                </address>
-                <address>
-                	<abbr title="Teléfono">P:</abbr>
-                  	(123) 456-7890
-                  	<br>
-                  	<abbr title="Email">E:</abbr>
-                  	<a href="mailto:#">info@mosquera.com</a>
-                </address>
+          	<!-- Fin contido principal -->
+            <div class="col-md-4 col-lg-3" id ="lateral">
+                <h2>Opcións laterais</h2>
+                <div class="direccion caixa">
+					<h3>DAW Dual, S.A.U. de deseño</h3>
+					<p>
+						R/ CIFP A Carballeira<br>
+						32002, Ourense<br>
+						988 999 999 - Fax: 988 999 999
+					</p>
+				</div>
+				<div class="sobremin caixa">
+					<h3>Sobre min</h3>
+					<p>
+						Somos un grupo que se está formando para ser profesionais da programación espcecializada en Web. Estamos comezando porque estamos en 1º curso, pero todo se andará e bla, bla, bla, ...
+					</p>
+				</div>                
           	</div>
         </div>
-		<!-- Fin zona de presentación e contacto -->
-		<!-- Zona de columnas de iconas -->		
-        <div class="row mb-5 text-center">
-        	<div class="col-md-4">
-        		<hr>
-            	<div class="informacion_columnas">                    
-                	<i class="fas fa-info-circle text-primary"></i>
-               	</div>                    
-                <h3>Novidades</h3>
-                <p>Aquí listaremos as últimas novidades</p>                
-			</div>
-            <div class="col-md-4">
-            <hr>
-            	<div class="informacion_columnas">                    
-                	<i class="fas fa-exclamation-circle text-warning"></i>
-               	</div>                    
-                <h3>Advertencias</h3>
-                <p>Aquí listaremos advertencias</p>
-            </div>
-            <div class="col-md-4">
-            	<hr>
-                <div class="informacion_columnas">                    
-                	<i class="fas fa-skull-crossbones text-danger"></i>
-               	</div>                    
-                <h3>Alertas críticas</h3>
-                <p>Aquí listaremos as cousas críticas</p>
-            </div>
-        </div>
-		<!-- Fin zona de columnas e iconas -->		
+		<!-- Fin zona principal da páxina -->
+			
 		<!-- Pé de páxina -->
 		<div class="row text-center" id="pe">
 			<div class="col-md-6 text-md-left">

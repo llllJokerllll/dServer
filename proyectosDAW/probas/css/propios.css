@@ -1,0 +1,16 @@
+table.multiplicacion {
+	border-collapse: separate;
+	border-spacing: 0.4rem;
+}
+
+table.multiplicacion td, table.multiplicacion th {
+	padding: 0.5rem;
+	text-align: center;
+	border: 1px solid #55C;
+}
+
+table.multiplicacion th {
+	background-color: #00AA00;
+	color: #FFF;
+	font-weight: bold;
+}

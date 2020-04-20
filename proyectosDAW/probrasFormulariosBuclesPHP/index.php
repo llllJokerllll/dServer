@@ -65,6 +65,17 @@
 								 <a class="nav-link" href="#">Privado</a>
 							</li>
 							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Formularios</a>
+								<div class="dropdown-menu">
+									<?php
+									include_once 'includes/utilidades.php';
+									foreach (voltarArquivos("./") as $ficheiro) {
+									    echo "<a class=\"dropdown-item\" href='$ficheiro'>$ficheiro</a>";
+									}
+									?>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
 								 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Ligazóns privadas</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 									 <a class="dropdown-item" href="#">Ligazón 1</a> <a class="dropdown-item" href="#">Ligazón 2</a> <a class="dropdown-item" href="#">Ligazón 3</a>

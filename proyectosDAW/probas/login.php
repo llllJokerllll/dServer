@@ -52,13 +52,13 @@
 							<li class="nav-item">
 								 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
 							</li>
-							<li class="nav-item active">
+							<li class="nav-item">
 								 <a class="nav-link" href="formulario.php">Probas formulario</a>
 							</li>
 							<li class="nav-item">
 								 <a class="nav-link" href="#">Público</a>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item active">
 								 <a class="nav-link" href="login.php">Login</a>
 							</li>
 							<li class="nav-item">
@@ -90,86 +90,30 @@
 			<nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>                
-                <li class="breadcrumb-item active" aria-current="page">Formulario</li>
+                <li class="breadcrumb-item active" aria-current="page">Login</li>
               </ol>
             </nav>
 		</div>	
 		<!-- Zona principal da páxina -->
 		<div class="row mb-5">
-			<!-- Contido -->
+			<!-- Contido principal -->
         	<div class="col-md-8 col-lg-9">
-                <h1>Caixa Forte</h1>
+                <h1>Login</h1>
                 
-                <?php
-                
-                require_once "includes/utilidades.php";
-                //inicialización de variables
-                define("CONTRASINAL", 1234);
-                $error = "";
-                $contrasinal = "";
-                $numOportunidades = 4;
-                                
-                if (isset($_REQUEST["envio"]) && $_REQUEST["envio"] == "1") {
-                    //Tramitamos el formulario
-                    $contrasinal = recolle("contrasinal");
-                    $numOportunidades = recolle("numOportunidades");
-                    
-                    if (!preg_match("/\w{4}/", $contrasinal)) {
-                        $error .= "<br>Número NO válido";
-                    }
-                    
-                    if (filter_var($numOportunidades, FILTER_VALIDATE_INT) === false) {
-                        $error .= "<br>Valor inválido en número de oportunidades";
-                    }
-                    
-                    if ($error == "") {
-                        if ($contrasinal == CONTRASINAL) {
-                            $acertado = true;
-                            echo "<div class ='alert alert-success'>Caixa aberta con éxito</div>";
-                        } else {
-                            $acertado = false;
-                            $numOportunidades--;
-                            if ($numOportunidades > 0) {
-                                echo "<div class='alert alert-warning'>Fallo!!! Quedan $numOportunidades intentos</div>";
-                            } else {
-                                echo "<div class='alert alert-danger'>Game Over!!! OUT!!!</div>";
-                            }
-                            
-                        }
-                        
-                        
-                    }
-                    
-                }
-                
-                if (!isset($_REQUEST["envio"]) || $_REQUEST["envio"] != "1" || $error != "" || (!$acertado && $numOportunidades > 0)) {
-                    if ($error !="") {
-                        $error = "<strong>Producíronse os seguintes erros</strong>" . $error;
-                        echo "<div class='alert alert-danger'>$error</div>";
-                    }
-                ?>
-                    <form class="<?= $error != "" ? 'was-validated':''?>" action="<?= $_SERVER["PHP_SELF"]?>" method="get">
-                    	<div class="form-group">
-                    		<label for="contrasinal">Contrasinal</label>
-                    		<input class="form-control" name="contrasinal" id="contrasinal" type="password" minlength="4" maxlength="4" required>
-                    		<div class="valid-feedback">Correcto!</div>
-                    		<div class="invalid-feedback">Debes introducir 4 caracteres alfanúmericos</div>
-                    	</div>
-                    
-                    	<input type="hidden" name="numOportunidades" value="<?= $numOportunidades?>"/>
-                    	<input type="hidden" name="envio" value="1">
-                    	<button class="btn btn-success" type="submit" value="enviar" name="botonEnvio">Enviar</button>
-                    	<button class="btn btn-warning" type="reset">Borrar</button>
-                    
-                    </form>
-                <?php 
-                
-                } else {
-                    echo "<p><a href='".$_SERVER["HTTP_REFERER"]."' title='Ir para atrás'>Volver para atrás</a></p>";
-                }
-                
-                ?>
-                
+                <form class="form-signin text-center">
+                  <img class="mb-2" src="imaxes/logo_al_g.png" alt="Logotipo">
+                  <h1 class="h3 mb-3">Por favor, inicie sesión</h1>
+                  <label for="inputusername" class="sr-only">Email address</label>
+                  <input type="text" id="inputusername" class="form-control" placeholder="Nome de usuario" required autofocus>
+                  <label for="inputPassword" class="sr-only">Password</label>
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <div class="checkbox mb-3">
+                    <label>
+                      <input type="checkbox" value="lembrar"> Lembrar
+                    </label>
+                  </div>
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>                  
+                </form>                
           	</div>
           	<!-- Fin contido principal -->
             <div class="col-md-4 col-lg-3" id ="lateral">

@@ -104,7 +104,11 @@
                 
                 require_once "includes/utilidades.php";
                 //inicialización de variables
-                define("CONTRASINAL", 1234);
+                //define("CONTRASINAL", 1234);
+                $ficheiro = fopen("claves.txt", "r");
+                $contrasinalBoa = fgets($ficheiro);
+                fclose($ficheiro);
+                
                 $error = "";
                 $contrasinal = "";
                 $numOportunidades = 4;
@@ -123,7 +127,7 @@
                     }
                     
                     if ($error == "") {
-                        if ($contrasinal == CONTRASINAL) {
+                        if ($contrasinal == $contrasinalBoa) {
                             $acertado = true;
                             echo "<div class ='alert alert-success'>Caixa aberta con éxito</div>";
                         } else {
