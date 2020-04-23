@@ -1,5 +1,5 @@
 <?php
-        session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -35,7 +35,7 @@
 <!-- Estilos propios -->
 <link rel="stylesheet" href="css/estilos.css">
 <link rel="stylesheet" href="css/form_login.css">
-<link rel="stylesheet" href="css/propios.css">
+<link rel="stylesheet" href="css/maquinita.css">
 
 </head>
 <body>
@@ -127,44 +127,34 @@
                 define("NUM_FRUTAS", 8); // Número de frutas
 
                 // Se genera una combinación nueva
-                $_SESSION[fruta1] = rand(1, NUM_FRUTAS);
-                $_SESSION[fruta2] = rand(1, NUM_FRUTAS);
-                $_SESSION[fruta3] = rand(1, NUM_FRUTAS);
+                function cargaFrutas() {
+                    $_SESSION["fruta1"] = rand(1, NUM_FRUTAS);
+                    $_SESSION["fruta2"] = rand(1, NUM_FRUTAS);
+                    $_SESSION["fruta3"] = rand(1, NUM_FRUTAS);
+                }
 
                 // Inicialización de variables
                 $erro = "";
 
                 // Valores iniciales variables sesión
-                if (! isset($_SESSION["monedas"])) {
+                if (!isset($_SESSION["monedas"])) {
                     $_SESSION["monedas"] = 0;
                 }
 
                 if (isset($_REQUEST["envio"]) && $_REQUEST["envio"] == "1") {
                     // Tramitamos fomrulario
-                    $accion = $_REQUEST["moneda"];
+                    $accion = $_REQUEST["accion"];
 
                     // Comprobaciones previas
                     if ($accion == "moneda") {
                         $_SESSION["monedas"] += 1;
                     }
 
-                    if (! isset($_SESSION["monedas"]) || ! isset($_SESSION["fruta1"]) || ! isset($_SESSION["fruta2"]) || ! isset($_SESSION["fruta3"])) {
-                        $_SESSION["monedas"] = 0;
-                        $_SESSION["fruta1"] = rand(1, NUM_FRUTAS);
-                        $_SESSION["fruta2"] = rand(1, NUM_FRUTAS);
-                        $_SESSION["fruta3"] = rand(1, NUM_FRUTAS);
-                    }
-
                     if ($accion == "jugar" && $_SESSION["monedas"] > 0) {
-                        $_SESSION["fruta1"] = rand(1, NUM_FRUTAS);
-                        $_SESSION["fruta2"] = rand(1, NUM_FRUTAS);
-                        $_SESSION["fruta3"] = rand(1, NUM_FRUTAS);
+                        cargaFrutas();
 
                         $_SESSION["monedas"] -= 1;
-                        print "<td style=\"border: black 4px solid; padding: 10px\">" . "<img src=\"imaxes/frutas/$_SESSION[fruta1].svg\" width=\"160\" alt=\"Imagen\"></td>\n";
-                        print "<td style=\"border: black 4px solid; padding: 10px\">" . "<img src=\"imaxes/frutas/$_SESSION[fruta2].svg\" width=\"160\" alt=\"Imagen\"></td>\n";
-                        print "<td style=\"border: black 4px solid; padding: 10px\">" . "<img src=\"imaxes/frutas/$_SESSION[fruta3].svg\" width=\"160\" alt=\"Imagen\"></td>\n";
-                        print "<td style=\"vertical-align: top; text-align: center\">\n";
+
                     }
                 }
 
@@ -176,7 +166,7 @@
                 }
                 ?>                  
                 <?php					
-                    if (! isset($_SESSION["monedas"]) || ! isset($_SESSION["fruta1"]) || ! isset($_SESSION["fruta2"]) || ! isset($_SESSION["fruta3"])) {
+                    if (!isset($_SESSION["monedas"]) || !isset($_SESSION["fruta1"]) || !isset($_SESSION["fruta2"]) || !isset($_SESSION["fruta3"])) {
                         $_SESSION["monedas"] = 0;
                         $_SESSION["fruta1"] = rand(1, NUM_FRUTAS);
                         $_SESSION["fruta2"] = rand(1, NUM_FRUTAS);
@@ -198,10 +188,9 @@
 								<p>
 									<button type="submit" name="accion" value="moneda">Meter moneda</button>
 								</p>
-								<p
-									style="margin: 0; font-size: 300%; border: black 4px solid; padding: 2px">0</p>
+								<input type="number" name="monedas" value=<?=$_SESSION["monedas"]?> readonly />
 								<p>
-									<button type="submit" name="accion" value="jugar">Jugar</button>
+									<button name="accion" value="jugar" <?= $_SESSION["monedas"] <= 0 ? "disabled class=\"btnJugarDesactivado\"" : "class=\"btnJugar\"" ?>>Jugar</button>
 								</p>
 							</td>
 						</tr>

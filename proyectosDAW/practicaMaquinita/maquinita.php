@@ -127,19 +127,18 @@
                 define("MIN", 1);
                 define("MAX", 8);
 
-                function generaImagen()
-                {
-                    return "<img src=\"imaxes/frutas/" . rand(MIN, MAX) . ".svg\" />";
+                function generaImagen() {
+                    $arrayImagenes = [];
+                    for ($i = 0; $i < 3; $i++) {
+                        $arrayImagenes[$i] = "<img src=\"imaxes/frutas/" . rand(MIN, MAX) . ".svg\" />";
+                    }
+                    return $arrayImagenes;
                 }
 
                 // Inicialización de variables
                 $erro = "";
                 $monedas = 0;
-                $imagenes = [
-                    generaImagen(),
-                    generaImagen(),
-                    generaImagen()
-                ];
+                $imagenes = generaImagen();
 
                 if (isset($_REQUEST["envio"]) && $_REQUEST["envio"] == "1") {
                     // Tramitamos fomrulario
@@ -153,15 +152,9 @@
                         ++$monedas;
                     }
 
-                    if ($jugar == 1) {
-                        if ($monedas > 0) {
-                            --$monedas;
-                            $imagenes = [
-                                generaImagen(),
-                                generaImagen(),
-                                generaImagen()
-                            ];
-                        }
+                    if ($jugar == 1 && $monedas > 0) {
+                        --$monedas;
+                        $imagenes = generaImagen();
                     }
                 }
 

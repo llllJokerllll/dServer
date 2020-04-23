@@ -1,0 +1,11 @@
+F.C. Barcelona;4;Athletic Club de Bilbao;1
+Real Madrid;2;R.C. Celta;2
+F.C. Barcelona;1;Real Madrid;0
+R.C. Celta;2;Athletic Club de Bilbao;0
+R.C. Celta;1;F.C. Barcelona;1
+Real Madrid;3;Athletic Club de Bilbao;1
+R.C. Deportivo da Coruña;1;F.C. Barcelona;6
+Real Madrid;3;Athletic Club de Bilbao;1
+R.C. Celta;7;R.C. Deportivo da Coruña;0
+R.C. Deportivo da Coruña;2;Real Madrid;2
+R.C. Deportivo da Coruña;4;Athletic Club de Bilbao;5
