@@ -1,8 +1,5 @@
 <?php 
     session_start();
-    if (!isset($_SESSION["nomeUsuario"])) {
-        header("Location: indexSenSesions.php");
-    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -54,10 +51,10 @@
   			<!-- Medio -->
   			<div class="row my-5">
   				<div class="col-md-9">
-  					<h1>Páxina Privada Sesións</h1>
+  					<h1>Index Sen Sesión</h1>
   					<?php 
   					     
-  					     echo "Nome de usuario: " . $_SESSION["nomeUsuario"];
+  					     echo "Sesión cerrada correctamente";
   					
   					?>
   				</div>

@@ -38,8 +38,8 @@
   				<div class="col-sm-7">
   					<ul id="menu">
   						<li><a href="index.php">Inicio</a></li>
-  						<li><a href="#">Exercicios</a></li>
   						<li><a href="sesions.php">Ver sesións</a></li>
+  						<li><a href="logout.php">Saír Sesión</a></li>
   					</ul>
   				</div>
   				<div class="col-sm-3">
@@ -54,10 +54,42 @@
   					<h1>Boletín Sesións</h1>
   					<?php 
   					
-  					     $_SESSION["nomeUsuario"] = "Pepito";
+  					     /* $_SESSION["nomeUsuario"] = "Pepito";
   					     
   					     echo "Nome de usuario: " . $_SESSION["nomeUsuario"];
+  					     
+  					     unset($_SESSION["xogadores"]);
+  					     $_SESSION["xogadores"][] = "Messi";
+  					     $_SESSION["xogadores"][] = "Cuiñas";
+  					     $_SESSION["xogadores"][] = "Alex";
+  					     
+  					    print_r($_SESSION["xogadores"]); */
   					
+  					require_once 'model/Figura.php';
+  					require_once 'model/Cadrado.php';
+  					
+  					$nome = "Rectangulo";
+  					
+  					$f = new Cadrado($nome, 7);
+  					$h = new Cadrado($nome, 7);
+  					$i = new Cadrado($nome, 7);
+  					$j = new Cadrado($nome, 7);
+  					
+  					echo $f->calcularArea();
+  					
+  					echo Cadrado::dimeAlgo();
+  					
+  					echo Figura::$numFiguras;
+  					
+  					$_SESSION["figura"] = serialize($f);
+  					
+  					$g = unserialize($_SESSION["figura"]);
+  					
+  					echo "<br>";
+  					
+  					$a = new Figura("Cadrado", false, 44);
+  					
+  					echo $a;
   					?>
   				</div>
   				<div class="col-md-3">

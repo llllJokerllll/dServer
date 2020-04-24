@@ -101,49 +101,103 @@
         	<div class="col-md-8 col-lg-9">
                 <h1>Array exercicio 18 Equipos de Fútbol</h1>
                 
-                <?php
-                    $nuevaLista = [];
-                
-                    $discos = [
-                        ["20364", "The Dark Side of the Moon", "Pink Floyd", "14,75"],
-                        ["45123", "A Night at the Opera", "Queen", "14,75"],
-                        ["78500", "A Hard Day's Night", "The Beatles", "13,99"],
-                        ["01841", "Led Zeppelin II", "Led Zeppelin", "18,54"],
-                        ["02548", "Load", "Metallica", "14,50"],
-                        ["97455", "Resistance", "Muse", "19,99"],
-                        ["12544", "Synchronicity", "The Police", "14,85"]
-                    ];
+                <?php 
+                    $encuentros = [];
+                    $fr = fopen("resultados.txt", "r");
                     
-                    $actualizacion = [
-                        ["id" => "45123", "precio" => "18,75"],
-                        ["id" => "02548", "precio" => "12,50"],
-                        ["id" => "78500", "precio" => "25,99"],
-                        ["id" => "97455", "precio" => "18,15"]
-                    ];
-                    
-                    function creaTabla($discos) {
-                        echo "<table>";
-                        echo "<tr><th>ID</th><th>Título</th><th>Banda</th><th>Prezo</th></tr>";
-                        foreach ($discos as $disco) {
-                            echo "<tr><td>" . $disco[0] . "</td><td>" . $disco[1] . "</td><td>" . $disco[2] . "</td><td>" . $disco[3] . "</td></tr>";
-                        }
-                        echo "</table>";
-                        
-                        echo "<br>";
+                    while(($linea = fgets($fr)) != null) {
+                        array_push($encuentros, explode(";", $linea));
                     }
-
-                    creaTabla($discos);
+                    fclose($fr);
                     
-                    foreach ($discos as $disco) {
-                        foreach ($actualizacion as $x) {
-                            if ($x["id"] == $disco[0]) {
-                                $disco[3] = $x["precio"];
+                    $clasificacion = [];
+                    foreach ($encuentros as $res) {
+                        if (!in_array($res[0], $clasificacion)) {
+                            $clasificacion[] = $res[0];
+                            if (!in_array($res[2], $clasificacion)) {
+                                $clasificacion[] = $res[2];
                             }
                         }
-                        $nuevaLista[] = $disco;
                     }
                     
-                    creaTabla($nuevaLista);
+                    $i = 0;
+                    
+                    foreach ($clasificacion as $points) {
+                        $clasificacion[$i] = array($points, 0 , 0, 0, 0, 0, 0, 0);
+                        $i++;
+                    }
+                    
+                    foreach ($encuentros as $resultado) {
+                        $local = $resultado[0];
+                        $visitante = $resultado[2];
+                        $goles_local = $resultado[1];
+                        $goles_visitante = $resultado[3];
+                        
+                        $empate = false;
+                        
+                        if ((int)$goles_local > (int)$goles_visitante) {
+                            $ganador = $local;
+                            $perdedor = $visitante;
+                        } else if ((int)$goles_local < (int)$goles_visitante) {
+                            $ganador = $visitante;
+                            $perdedor = $local;
+                        } else {
+                            $empate = true;
+                        }
+                        
+                        if ($empate) {
+                            for ($i = 0; $i <= count($clasificacion)-1; $i++) {
+                                if (strcmp($local, $clasificacion[$i][0]) == 0) {
+                                    $clasificacion[$i][1]++;
+                                    $clasificacion[$i][3]++;
+                                    $clasificacion[$i][5] += $goles_local;
+                                    $clasificacion[$i][6] += (int)$goles_visitante;
+                                    $clasificacion[$i][7]++;
+                                }
+                                
+                                if (strcmp($visitante, $clasificacion[$i][0]) == 0) {
+                                    $clasificacion[$i][1]++;
+                                    $clasificacion[$i][3]++;
+                                    $clasificacion[$i][5] += (int)$goles_visitante;
+                                    $clasificacion[$i][6] += $goles_local;
+                                    $clasificacion[$i][7]++;
+                                }
+                            }
+                        } else {
+                            for ($j = 0; $j <= count($clasificacion)-1; $j++) {
+                                if (strcmp($ganador, $clasificacion[$j][0]) == 0) {
+                                    $clasificacion[$j][1]++;
+                                    $clasificacion[$j][2]++;
+                                    $clasificacion[$j][5] += $goles_local;
+                                    $clasificacion[$j][6] += (int)$goles_visitante;
+                                    $clasificacion[$j][7] += 3;
+                                }
+                                
+                                if (strcmp($perdedor, $clasificacion[$j][0]) == 0) {
+                                    $clasificacion[$j][1]++;
+                                    $clasificacion[$j][4]++;
+                                    $clasificacion[$j][5] += (int)$goles_visitante;
+                                    $clasificacion[$j][6] += $goles_local;
+                                }
+                            }
+                        }
+                    }
+                    
+                    foreach ($clasificacion as $clave => $fila) {
+                        $puntos[$clave] = $fila[7];
+                    }
+                    
+                    array_multisort($puntos, SORT_DESC, $clasificacion);
+                    
+                    echo "<table>";
+                    echo "<tr><th>Equipo</th><th>PX</th><th>G</th><th>E</th><th>P</th><th>F</th><th>C</th><th>Puntos</th></tr>";
+                    foreach ($clasificacion as $value){
+                        echo "<tr>";
+                        echo "<td>" . $value[0] . "</td><td>" . $value[1] . "</td><td>" . $value[2] . "</td><td>" . $value[3] . "</td><td>" . $value[4] . "</td><td>" . $value[5] . "</td><td>" . $value[6] . "</td><td>" . $value[7] . "</td>";
+                        echo "<tr>";
+                    }
+                    echo "</table>";
+
                 ?>
                 
           	</div>
