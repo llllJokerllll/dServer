@@ -102,8 +102,29 @@
                 
                 <?php 
                 
+                require_once 'includes/ConexionBD.php';
                 
-                    
+                $sql = "SELECT id, nome, prezo, descricion, tipoIVE FROM alimento " .
+                       "WHERE prezo > ? AND nome LIKE ? " .
+                       "ORDER BY nome ASC";
+                
+                $stm = $conexion->prepare($sql);
+                $stm->bindValue(1, 4);
+                $stm->bindValue(2, "C%");
+                $stm->execute();
+                $results = $stm->fetchAll(PDO::FETCH_OBJ);
+                
+                // if(count($results)>0){
+                if ($stm -> rowCount() > 0) {
+                    echo "<ul>";
+                    foreach ($results as $al) {
+                        echo "<li>" . $al->nome . "</li>";
+                    }
+                    echo "</ul>";
+                } else {
+                    echo "Non hay productos con esas características";
+                }
+                
                 ?>
                 
                 
