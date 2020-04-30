@@ -4,7 +4,7 @@ class CountryDAO implements DAO {
     public function getAll(){
             
         $vector = [];
-        global $conexion;
+        $conexion = ConexionBD::obterConexion();
         
         try {
             $sql = "SELECT Code, Name, Continent, Region, surfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOld, LocalName, GovernmentForm, HeadOfState, Capital, Code2 FROM country WHERE continent LIKE ? ORDER By Code ASC";
@@ -29,7 +29,7 @@ class CountryDAO implements DAO {
     public function get($id) {
         
         $pais = null;
-        global $conexion;
+        $conexion = ConexionBD::obterConexion();
         
         try {
             $sql = "SELECT Code, Name, Continent, Region, surfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOld, LocalName, GovernmentForm, HeadOfState, Capital, Code2 FROM country WHERE Code LIKE ?";
@@ -52,7 +52,7 @@ class CountryDAO implements DAO {
 
     public function save($object) {
         
-        global $conexion;
+        $conexion = ConexionBD::obterConexion();
         
         try {
             $sql = "INSERT INTO country (Code, Name, Continent, Region, surfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOld, LocalName, GovernmentForm, HeadOfState, Capital, Code2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -86,10 +86,10 @@ class CountryDAO implements DAO {
 
     public function update($object) {
         
-        global $conexion;
+        $conexion = ConexionBD::obterConexion();
         
         try {
-            $sql = "UPDATE country Code = ?, Name = ?, Continent = ?, Region = ?, surfaceArea = ?, IndepYear = ?, Population = ?, LifeExpectancy = ?, GNP = ?, GNPOld = ?, LocalName = ?, GovernmentForm = ?, HeadOfState = ?, Capital = ?, Code2 = ? WHERE code LIKE ?";
+            $sql = "UPDATE country SET Code = ?, Name = ?, Continent = ?, Region = ?, surfaceArea = ?, IndepYear = ?, Population = ?, LifeExpectancy = ?, GNP = ?, GNPOld = ?, LocalName = ?, GovernmentForm = ?, HeadOfState = ?, Capital = ?, Code2 = ? WHERE code LIKE ?";
             
             $stmt = $conexion -> prepare($sql);
             $stmt->bindValue(1, $object->getCode());
@@ -121,7 +121,7 @@ class CountryDAO implements DAO {
 
     public function delete($object) {
         
-        global $conexion;
+        $conexion = ConexionBD::obterConexion();
         
         try {
             $sql = "DELETE FROM country WHERE code LIKE ?";

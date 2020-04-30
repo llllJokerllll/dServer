@@ -3,7 +3,7 @@ class UserDAO {
     
     public function comprobarDatosUsuario(&$user) {
         
-        global $conexion;
+        $conexion = ConexionBD::obterConexion();
         
         try {
             $sql = "SELECT username, nome FROM user WHERE username LIKE ? AND password LIKE ?";
