@@ -1,5 +1,6 @@
-<?php 
-    session_start();
+<?php
+session_start();
+if (!empty($_SESSION['usuario'])) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,13 +32,12 @@
   				</div>
   				<div class="col-sm-7">
   					<ul id="menu">
-  						<li class="activo"><a href="index.php">Inicio</a></li>
-  						<li><a href="arboresListaxe.php">Árbores Galegas</a></li>
-  						<li><a href="logout.php">Saír Sesión</a></li>
+  						<li><a href="index.php">INICIO</a></li>
+  						<li class="activo"><a href="privado.php">PRIVADO</a></li>
   					</ul>
   				</div>
   				<div class="col-sm-3">
-  					<?php include_once 'includes/cookieVisitas.php';?> 
+  					<?php echo "Hola " . $_SESSION['usuario'] . "(<a href='logout.php'>logout</a>)";?>
   				</div>
   			</div>
   			<!-- Fin Cabeza -->
@@ -45,8 +45,8 @@
   			<!-- Medio -->
   			<div class="row my-5">
   				<div class="col-md-9">
-  					<h1>Boletín Sesións</h1>
-  					
+  					<h1>Privado</h1>
+  					<p>Estamos en privado</p>
   				</div>
   				<div class="col-md-3">
   					<h2>Lateral</h2>
@@ -65,3 +65,8 @@
   		</div>
   	</body>
 </html>
+<?php 
+} else {
+    header("location: login.php");
+}
+?>

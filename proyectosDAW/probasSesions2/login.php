@@ -1,6 +1,3 @@
-<?php 
-    session_start();
-?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -31,13 +28,12 @@
   				</div>
   				<div class="col-sm-7">
   					<ul id="menu">
-  						<li class="activo"><a href="index.php">Inicio</a></li>
-  						<li><a href="arboresListaxe.php">Árbores Galegas</a></li>
-  						<li><a href="logout.php">Saír Sesión</a></li>
+  						<li><a href="index.php">INICIO</a></li>
+  						<li class="activo"><a href="login.php">LOGIN</a></li>
   					</ul>
   				</div>
   				<div class="col-sm-3">
-  					<?php include_once 'includes/cookieVisitas.php';?> 
+
   				</div>
   			</div>
   			<!-- Fin Cabeza -->
@@ -45,12 +41,22 @@
   			<!-- Medio -->
   			<div class="row my-5">
   				<div class="col-md-9">
-  					<h1>Boletín Sesións</h1>
-  					
+  					<h1>Login</h1>
+  					<div id="login">
+  						<h2>Por favor, inicie<br>sesión</h2>
+  						
+  						<form method="POST" action="validar.php">
+                            <input type="text" name="nnombre" placeholder="Usuario" />
+                            <br />
+                            <input type="password" name="npassword" placeholder="Contraseña" />
+                            <br />
+                            <button type="submit" class="btn btn-success">Inicar Sesion</button>
+                        </form>
+  					</div>
   				</div>
   				<div class="col-md-3">
   					<h2>Lateral</h2>
-  					<p>Texto</p>
+
   				</div>
   			</div>
   			<!-- Fin Medio -->

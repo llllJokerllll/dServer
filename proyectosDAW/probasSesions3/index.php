@@ -37,7 +37,7 @@
   					</ul>
   				</div>
   				<div class="col-sm-3">
-  					<?php include_once 'includes/cookieVisitas.php';?> 
+  					<?php include_once 'includes/cookieVisitas.php';?>
   				</div>
   			</div>
   			<!-- Fin Cabeza -->

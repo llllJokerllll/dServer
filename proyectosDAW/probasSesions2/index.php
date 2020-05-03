@@ -1,5 +1,5 @@
-<?php 
-    session_start();
+<?php
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,13 +31,20 @@
   				</div>
   				<div class="col-sm-7">
   					<ul id="menu">
-  						<li class="activo"><a href="index.php">Inicio</a></li>
-  						<li><a href="arboresListaxe.php">Árbores Galegas</a></li>
-  						<li><a href="logout.php">Saír Sesión</a></li>
+  						<li class="activo"><a href="index.php">INICIO</a></li>
+  						<?php if (!empty($_SESSION['usuario'])) {
+  						    echo "<li><a href='privado.php'>PRIVADO</a></li>";
+  						} else {
+  						    echo "<li><a href='login.php'>LOGIN</a></li>";
+  						}
+      					?>
   					</ul>
   				</div>
   				<div class="col-sm-3">
-  					<?php include_once 'includes/cookieVisitas.php';?> 
+  					<?php if (!empty($_SESSION['usuario'])) {
+  					    echo "Hola " . $_SESSION['usuario'] . "(<a href='logout.php'>logout</a>)";
+  					}
+  					?>
   				</div>
   			</div>
   			<!-- Fin Cabeza -->
@@ -45,7 +52,8 @@
   			<!-- Medio -->
   			<div class="row my-5">
   				<div class="col-md-9">
-  					<h1>Boletín Sesións</h1>
+  					<h1>Páxina de inicio</h1>
+  					<p>Estamos en inicio</p>
   					
   				</div>
   				<div class="col-md-3">

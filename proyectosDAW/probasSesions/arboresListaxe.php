@@ -31,8 +31,8 @@
   				</div>
   				<div class="col-sm-7">
   					<ul id="menu">
-  						<li class="activo"><a href="index.php">Inicio</a></li>
-  						<li><a href="arboresListaxe.php">Árbores Galegas</a></li>
+  						<li><a href="index.php">Inicio</a></li>
+  						<li class="activo"><a href="arboresListaxe.php">Árbores Galegas</a></li>
   						<li><a href="logout.php">Saír Sesión</a></li>
   					</ul>
   				</div>
@@ -45,12 +45,40 @@
   			<!-- Medio -->
   			<div class="row my-5">
   				<div class="col-md-9">
-  					<h1>Boletín Sesións</h1>
-  					
+  					<h1>Árbores típicas galegas - Listaxe</h1>
+  					<p>Anímate a inserir algunha, quedará gardado na sesión do navegador.</p>
+  						<?php
+							if (isset($_SESSION["arbores"]) && count($_SESSION["arbores"]) > 0) {
+							    sort($_SESSION["arbores"]);
+							    echo "<table class='table table-hover table-sm table-striped'>";
+							    echo "<tr class='bg-succes'><th>Nome da árbore</th><th></th></tr>";
+							    foreach ($_SESSION["arbores"] as $arb) {
+							        echo "<tr><td>$arb</td>";
+							        echo "<td><a href='arboresForm.php?accion=eliminar&idArbore=$arb' tittle='Eliminar' onclick='return confirm('Estás seguro de eliminar?');'>Eliminar</a></td>";
+							        echo "</tr>";
+							    }
+							    echo "</table>";
+							} else {
+							    $_SESSION["arbores"] = [];
+							    echo "<p>Non hai árbores para amosar</p>";
+							}
+						?>
   				</div>
   				<div class="col-md-3">
   					<h2>Lateral</h2>
-  					<p>Texto</p>
+  					<?php 
+  					     $paxina = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+  					     $arboresListaxe = "list-group-item";
+  					     if ($paxina == "arboresListaxe.php") {
+  					         $arboresListaxe = "list-group-item active";
+  					     }
+  					     if ($paxina) {
+  					         echo "<ul class='list-group'>";
+  					         echo "<li class='list-group-item'><a href='arboresForm.php'>Engadir árbore</a></li>";
+  					         echo "<li class='$arboresListaxe'><a href='arboresListaxe.php'>Listaxe de árbores</a></li>";
+  					         echo "</ul>";
+  					     }
+  					?>
   				</div>
   			</div>
   			<!-- Fin Medio -->

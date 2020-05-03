@@ -22,10 +22,6 @@
 		<link rel="stylesheet" href="css/estilos.css">
 		
 		<?php 
-		if(isset($_COOKIE["color"])){
-		    echo "<style> body{background-color:".$_COOKIE["color"]."!important;}</style>";
-		}
-		
 		if(!isset($_SESSION["arbore"])) {
 		    $_SESSION["arbore"] = [];
 		}

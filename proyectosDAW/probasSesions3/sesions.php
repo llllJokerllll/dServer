@@ -1,5 +1,8 @@
 <?php 
     session_start();
+    if (!isset($_SESSION["nomeUsuario"])) {
+        header("Location: indexSenSesions.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,8 +22,14 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 		<!-- Fin Bootstrap CDNs --> 
 		<!-- Estilos propios -->
-		<link rel="stylesheet" href="css/estilos.css">		
-		<link rel="stylesheet" href="css/propios.css">	
+		<link rel="stylesheet" href="css/estilos.css">
+		<?php 
+		if(isset($_COOKIE["color"])){
+		    echo "<style> body{background-color:".$_COOKIE["color"]."!important;}</style>";
+		}
+		
+		?>
+		
   	</head>
   	<body>
   		<div class="container my-2 p-3">
@@ -31,8 +40,8 @@
   				</div>
   				<div class="col-sm-7">
   					<ul id="menu">
-  						<li class="activo"><a href="index.php">Inicio</a></li>
-  						<li><a href="arboresListaxe.php">Árbores Galegas</a></li>
+  						<li><a href="index.php">Inicio</a></li>
+  						<li><a href="sesions.php">Ver Sesións</a></li>
   						<li><a href="logout.php">Saír Sesión</a></li>
   					</ul>
   				</div>
@@ -45,8 +54,12 @@
   			<!-- Medio -->
   			<div class="row my-5">
   				<div class="col-md-9">
-  					<h1>Boletín Sesións</h1>
+  					<h1>Páxina Privada Sesións</h1>
+  					<?php 
+  					     
+  					     echo "Nome de usuario: " . $_SESSION["nomeUsuario"];
   					
+  					?>
   				</div>
   				<div class="col-md-3">
   					<h2>Lateral</h2>

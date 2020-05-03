@@ -20,7 +20,6 @@
 		<!-- Fin Bootstrap CDNs --> 
 		<!-- Estilos propios -->
 		<link rel="stylesheet" href="css/estilos.css">		
-		<link rel="stylesheet" href="css/propios.css">	
   	</head>
   	<body>
   		<div class="container my-2 p-3">
@@ -31,8 +30,8 @@
   				</div>
   				<div class="col-sm-7">
   					<ul id="menu">
-  						<li class="activo"><a href="index.php">Inicio</a></li>
-  						<li><a href="arboresListaxe.php">Árbores Galegas</a></li>
+  						<li><a href="index.php">Inicio</a></li>
+  						<li><a href="sesions.php">Ver Sesións</a></li>
   						<li><a href="logout.php">Saír Sesión</a></li>
   					</ul>
   				</div>
@@ -45,8 +44,12 @@
   			<!-- Medio -->
   			<div class="row my-5">
   				<div class="col-md-9">
-  					<h1>Boletín Sesións</h1>
+  					<h1>Index Sen Sesión</h1>
+  					<?php 
+  					     
+  					     echo "Sesión cerrada correctamente";
   					
+  					?>
   				</div>
   				<div class="col-md-3">
   					<h2>Lateral</h2>
