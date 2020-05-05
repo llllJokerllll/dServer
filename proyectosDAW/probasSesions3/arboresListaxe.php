@@ -20,6 +20,7 @@
 		<!-- Fin Bootstrap CDNs --> 
 		<!-- Estilos propios -->
 		<link rel="stylesheet" href="css/estilos.css">		
+		<link rel="stylesheet" href="css/propios.css">	
   	</head>
   	<body>
   		<div class="container my-2 p-3">
@@ -31,7 +32,7 @@
   				<div class="col-sm-7">
   					<ul id="menu">
   						<li><a href="index.php">Inicio</a></li>
-  						<li><a href="sesions.php">Ver Sesións</a></li>
+  						<li class="activo"><a href="arboresListaxe.php">Árbores Galegas</a></li>
   						<li><a href="logout.php">Saír Sesión</a></li>
   					</ul>
   				</div>
@@ -44,16 +45,42 @@
   			<!-- Medio -->
   			<div class="row my-5">
   				<div class="col-md-9">
-  					<h1>Index Sen Sesión</h1>
-  					<?php 
-  					     
-  					     echo "Sesión cerrada correctamente";
-  					
-  					?>
+  					<h1>Árbores típicas galegas - Listaxe</h1>
+  					<p>Anímate a inserir algunha, quedará gardado na sesión do navegador.</p>
+  						<?php
+							if (isset($_SESSION["arbores"]) && count($_SESSION["arbores"]) > 0) {
+							    //sort($_SESSION["arbores"]);
+							    require_once 'model/Arbore.php';
+							    echo "<table class='table table-hover table-sm table-striped'>";
+							    echo "<tr class='bg-succes'><th>Nome común</th><th>Nome latino</th><th>Altura máxima</th><th></th></tr>";
+							    for ($i = 0; $i < count($_SESSION["arbores"]); $i++) {
+							        $res = unserialize($_SESSION["arbores"][$i]);
+							        echo "<tr><td>" . $res->getNomeComun() . "</td><td>" . $res->getNomeLatino() . "</td><td>" . $res->getAlturaMaxima() . "</td>";
+							        echo "<td><a href='arboresForm.php?accion=eliminar&idArbore=$i' tittle='Eliminar' onclick='return confirm('Estás seguro de eliminar?');'>Eliminar</a></td>";
+							        echo "</tr>";
+							    }
+							    echo "</table>";
+							} else {
+							    $_SESSION["arbores"] = [];
+							    echo "<p>Non hai árbores para amosar</p>";
+							}
+						?>
   				</div>
   				<div class="col-md-3">
   					<h2>Lateral</h2>
-  					<p>Texto</p>
+  					<?php 
+  					     $paxina = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+  					     $arboresListaxe = "list-group-item";
+  					     if ($paxina == "arboresListaxe.php") {
+  					         $arboresListaxe = "list-group-item active";
+  					     }
+  					     if ($paxina) {
+  					         echo "<ul class='list-group'>";
+  					         echo "<li class='list-group-item'><a href='arboresForm.php'>Engadir árbore</a></li>";
+  					         echo "<li class='$arboresListaxe'><a href='arboresListaxe.php'>Listaxe de árbores</a></li>";
+  					         echo "</ul>";
+  					     }
+  					?>
   				</div>
   			</div>
   			<!-- Fin Medio -->

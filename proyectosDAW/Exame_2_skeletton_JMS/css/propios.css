@@ -1,0 +1,33 @@
+#menuLateral{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+#menuLateral li {
+	margin-left: 0.5rem;
+}
+
+table th, table tr td:last-child {
+	text-align: center;
+}
+
+table tr td:last-child{
+	font-size: 90%;
+}
+
+#menu li.active a{
+	color: #996600;
+	font-weight: bold;
+}
+
+span.prohibido{
+	color: salmon;
+}
+
+/*Imaxe portada*/
+img.principal {	
+	width: 50%; 
+	min-width: 18rem;
+	max-width: 40rem;
+}

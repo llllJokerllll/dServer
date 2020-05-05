@@ -17,7 +17,7 @@
 	<%
 		} else {
 	%>
-		<h2>A vida vai costa abaixo ...</h2><p>(<%= num %>)</p>
+		<h2>A vida vai costa abaixo...</h2><p>(<%= num %>)</p>
 	<%
 		}
 	%>
