@@ -3,7 +3,7 @@ class ValoracionTroncosDAO {
     
     public function getAll(){
         $vector = [];
-        $conexion = ConexionBD::obterConexion();
+        $conexion = ConexionBD::conectar();
         
         try {
             $sql = "SELECT madeira, cantidade, altura, radio, desconto, volume, idLote FROM valoraciontroncos";
@@ -26,7 +26,7 @@ class ValoracionTroncosDAO {
     public function get($id) {
         
         $valoracion = null;
-        $conexion = ConexionBD::obterConexion();
+        $conexion = ConexionBD::conectar();
         
         try {
             $sql = "SELECT madeira, cantidade, altura, radio, desconto, volume, idLote FROM valoraciontroncos WHERE id LIKE ?";
@@ -49,7 +49,7 @@ class ValoracionTroncosDAO {
     
     public function save($object) {
         
-        $conexion = ConexionBD::obterConexion();
+        $conexion = ConexionBD::conectar();
         
         try {
             $sql = "INSERT INTO valoraciontroncos (madeira, cantidade, altura, radio, desconto, volume, idLote) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -75,7 +75,7 @@ class ValoracionTroncosDAO {
     
     public function delete($object) {
         
-        $conexion = ConexionBD::obterConexion();
+        $conexion = ConexionBD::conectar();
         
         try {
             $sql = "DELETE FROM valoraciontroncos WHERE id LIKE ?";
@@ -95,7 +95,7 @@ class ValoracionTroncosDAO {
     
     public function update($object) {
         
-        $conexion = ConexionBD::obterConexion();
+        $conexion = ConexionBD::conectar();
         
         try {
             $sql = "UPDATE valoraciontroncos SET madeira = ?, cantidade = ?, altura = ?, radio = ?, desconto = ?, volume = ?, idLote = ? WHERE id LIKE ?";

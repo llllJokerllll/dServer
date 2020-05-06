@@ -8,7 +8,15 @@ require_once 'menu.php';
     	<div class="col-md-9">
     		<h1>Confirmación de valoracións</h1>
     		<?php       		      
-    		  /*TODO*/
+    		if (isset($_REQUEST["envio"]) && isset($_SESSION["troncos"])) {
+    		    $tDAO = new ValoracionTroncosDAO();
+    		    foreach ($_SESSION["troncos"] as $tr) {
+    		        $tr = unserialize($tr);
+    		        $tDAO->save($tr);
+    		    }
+    		    unset($_SESSION["troncos"]);
+    		    echo "Valoracións perfectamente almacenadas na BD.";
+    		}
             ?>            
     	</div>       
 	</div>

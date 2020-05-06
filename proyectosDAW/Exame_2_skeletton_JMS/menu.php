@@ -15,7 +15,7 @@
     						<li class="nav-item"><a class="nav-link" href="index.php">Inicio</a></li>
     						<li class="nav-item"><a class="nav-link" href="enunciado.php">Enunciado</a></li>
     						<li class="nav-item"><a class="nav-link" href="crearTroncosSesion.php">Crear valoración</a></li>
-    						<li class="nav-item"><a class="nav-link" href="verValoracionsPendentes.php"><i class="fas fa-tree"></i><!-- TODO --></a></li>
+    						<li class="nav-item"><a class="nav-link" href="verValoracionsPendentes.php"><i class="fas fa-tree"></i><?= $numTroncos == 0 ? "" : " $numTroncos"?></a></li>
     						    <!-- <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href='#' data-toggle="dropdown">Valoración troncos</a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
