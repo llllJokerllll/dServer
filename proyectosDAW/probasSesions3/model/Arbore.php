@@ -4,10 +4,10 @@
         private $nomeLatino;
         private $alturaMaxima;
     
-        public function __construct($nomeComun, $nomeLatino, $alturaMaxima = "0") {
-            $this -> nomeComun;
-            $this -> nomeLatino;
-            $this -> alturaMaxima;
+        public function __construct($nomeComun = "", $nomeLatino = "", $alturaMaxima = "0") {
+            $this->nomeComun = $nomeComun;
+            $this->nomeLatino = $nomeLatino;
+            $this->alturaMaxima = $alturaMaxima;
         }
         
         public function getNomeComun() {

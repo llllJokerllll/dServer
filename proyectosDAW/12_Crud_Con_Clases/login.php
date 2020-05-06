@@ -13,7 +13,6 @@
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $uDAO = new UserDAO();
                 $usuario = new User($_POST["user"], $_POST["pass"]);
-                
                 if ($uDAO->comprobarDatosUsuario($usuario)) {
                     session_regenerate_id();                       
                     $_SESSION['loged_user'] = $usuario->getNome();

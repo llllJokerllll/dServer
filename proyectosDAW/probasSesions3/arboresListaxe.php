@@ -48,20 +48,18 @@
   					<h1>Árbores típicas galegas - Listaxe</h1>
   					<p>Anímate a inserir algunha, quedará gardado na sesión do navegador.</p>
   						<?php
+  						    require_once(__DIR__."/model/Arbore.php");
 							if (isset($_SESSION["arbores"]) && count($_SESSION["arbores"]) > 0) {
-							    //sort($_SESSION["arbores"]);
-							    require_once 'model/Arbore.php';
 							    echo "<table class='table table-hover table-sm table-striped'>";
 							    echo "<tr class='bg-succes'><th>Nome común</th><th>Nome latino</th><th>Altura máxima</th><th></th></tr>";
-							    for ($i = 0; $i < count($_SESSION["arbores"]); $i++) {
-							        $res = unserialize($_SESSION["arbores"][$i]);
-							        echo "<tr><td>" . $res->getNomeComun() . "</td><td>" . $res->getNomeLatino() . "</td><td>" . $res->getAlturaMaxima() . "</td>";
-							        echo "<td><a href='arboresForm.php?accion=eliminar&idArbore=$i' tittle='Eliminar' onclick='return confirm('Estás seguro de eliminar?');'>Eliminar</a></td>";
+							    foreach ($_SESSION["arbores"] as $key => $a) {
+							        $a = unserialize($a);
+							        echo "<tr><td>{$a->getNomeComun()}</td><td>{$a->getNomeLatino()}</td><td>{$a->getAlturaMaxima()}</td>";
+							        echo "<td><a href='arboresForm.php?accion=eliminar&idArbore={$key}' tittle='Eliminar' onclick='return confirm('Estás seguro de eliminar?');'>Eliminar</a></td>";
 							        echo "</tr>";
 							    }
 							    echo "</table>";
 							} else {
-							    $_SESSION["arbores"] = [];
 							    echo "<p>Non hai árbores para amosar</p>";
 							}
 						?>

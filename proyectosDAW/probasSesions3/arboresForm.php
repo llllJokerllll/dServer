@@ -48,64 +48,48 @@
   					<h1>Árbores típicas galegas - Engadir</h1>
   					<p>Anímate a inserir algunha, quedará gardado na sesión do navegador.</p>
   						<?php
+  						    require_once(__DIR__."/model/Arbore.php");
   						    $nomeComun = "";
   						    $nomeLatino = "";
-  						    $alturaMaxima = "";
+  						    $alturaMaxima = 0;
   						    $arbore = null;
   						    $erroText = "";
   						    
 							if (isset($_REQUEST["accion"]) && $_REQUEST["accion"] == "eliminar" && isset($_REQUEST["idArbore"])) {
-							    for ($i = 0; $i < count($_SESSION["arbores"]); $i++) {
-							        if ($_SESSION["arbores"][$i] == $_REQUEST["nomeLatino"]) {
-							            unset($_SESSION["arbores"][$i]);
-							            break;
-							        }
-							    }
+                                unset($_SESSION["arbores"][$_REQUEST["idArbore"]]);
 							    header("location: arboresListaxe.php");
 							    echo "<div class='alert alert-success alert-dismissible fade show'>Árbore eliminada correctamente</div>";
 							}
 							
 							if (isset($_REQUEST["envio"]) && $_REQUEST["envio"] == "1") {
 							    require_once(__DIR__."/includes/utilidades.php");
-							    require_once 'model/Arbore.php';
-							    $nomeComun = recolle($_REQUEST["nomeComun"]);
-							    $nomeLatino = recolle($_REQUEST["nomeLatino"]);
-							    $alturaMaxima = recolle($_REQUEST["alturaMaxima"]);
-							        for ($i = 0; $i < count($_SESSION["arbores"]); $i++) {
-							            $res = unserialize($_SESSION["arbores"][$i]);
-							            if ($res->getNomeLatino() == $nomeLatino) {
-							                $erroText = "Nome de árbore repetida <br>";
-							            }
+							    
+							    $nomeComun = recolle("nomeComun");
+							    $nomeLatino = recolle("nomeLatino");
+							    $alturaMaxima = recolle("alturaMaxima");
+							    $arbore = new Arbore($nomeComun, $nomeLatino, $alturaMaxima);
+							    
+							    foreach ($_SESSION["arbores"] as $arb) {
+							        $arb = unserialize($arb);
+							        if ($arb->getNomeLatino() == $arbore->getNomeLatino()) {
+							            $erroText = "Árbore repetida";
+							            break;
 							        }
+							    }
 							    
 							    if ($erroText == "") {
-							        $arbore = new Arbore($nomeComun, $nomeLatino, $alturaMaxima);
 							        $_SESSION["arbores"][] = serialize($arbore);
-							        $nomeComun = "";
-							        $nomeLatino = "";
-							        $alturaMaxima = "";
-							        $arbore = null;
 							        header("location: arboresListaxe.php");
 							        echo "<div class='alert alert-success alert-dismissible fade show'>Árbore engadida correctamente</div>";
 							    }
 							}
 							
-							if (!isset($_REQUEST["envio"]) || $_REQUEST["envio"] != 1 || (isset($erroText) && $erroText != "")) {
-							    if ($erroText != "") {
-							        $erroText = "<strong>Houbo erros na tramitacón do formulario</strong><br>" . $erroText;
-							        echo "<div class='alert-danger alert-dismissible fade show'>
-                                            $erroText
-                                            <button type='button' class='close' data.dismiss='alert' aria-label='Close'>
-                                                <span aria-hidden='true'>&times;</span>
-                                            </button>
-                                        </div>";
-							    }
-							}
+							
 						?>
 						<form action="<?=$_SERVER['PHP_SELF']?>" action="GET" class="<?=$erroText != '' ? 'was-validated' : '';?>">
     						<div class="form-group">
     							<label for="nomeComun">Nome común</label>
-    							<input type="text" name="nomeComun" minlength="3" maxlength="50" value="<?=$nomeComun?>" class="form-control" placeholder="Introduza un nome común de árbore" required>
+    							<input type="text" name="nomeComun" id="nomeComun" minlength="3" maxlength="50" value="<?=$nomeComun?>" class="form-control" placeholder="Introduza un nome común de árbore" required>
     							<div class="valid-feedback">
     								Correcto!!!
     							</div>
@@ -113,7 +97,7 @@
     								Por favor, introduzca un texto válido, números e letras incluíndo o guión baixo e medio.
     							</div>
     							<label for="nomeLatino">Nome latino</label>
-    							<input type="text" name="nomeLatino" minlength="3" maxlength="50" value="<?=$nomeLatino?>" class="form-control" placeholder="Introduza un nome latino de árbore" required>
+    							<input type="text" name="nomeLatino" id="nomeLatino" minlength="3" maxlength="50" value="<?=$nomeLatino?>" class="form-control" placeholder="Introduza un nome latino de árbore" required>
     							<div class="valid-feedback">
     								Correcto!!!
     							</div>
@@ -121,7 +105,7 @@
     								Por favor, introduzca un texto válido, números e letras incluíndo o guión baixo e medio.
     							</div>
     							<label for="alturaMaxima">Altura máxima</label>
-    							<input type="number" name="alturaMaxima" min="1" max="150" value="<?=$alturaMaxima?>" class="form-control" placeholder="0" required>
+    							<input type="number" name="alturaMaxima" id="alturaMaxima" min="1" max="150" value="<?=$alturaMaxima?>" class="form-control" placeholder="0" required>
     							<div class="valid-feedback">
     								Correcto!!!
     							</div>
@@ -129,8 +113,7 @@
     								Por favor, introduzca un valor válido, números.
     							</div>
     						</div>
-    						<input type="hidden" name="envio" value="1">
-    						<button type="submit" class="btn btn-primary">Enviar</button>
+    						<button type="submit" name="envio" value="1" class="btn btn-primary">Enviar</button>
     						<button type="reset" class="btn btn-warning">Borrar</button>
 						</form>
 						<hr class="my-4">
