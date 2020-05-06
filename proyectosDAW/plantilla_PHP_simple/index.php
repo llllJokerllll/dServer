@@ -7,7 +7,7 @@
         <title>&bull; Plantilla PHP &bull;  	</title>
         <link rel="icon" type="image/png" sizes="64x64" href="favicon.png"/>	
         <meta name="description" content="Plantilla básica para DAWDUAL">
-        <meta name="author" content="Jose Manuel Sabarís García">   
+        <meta name="author" content="Jose Manuel Sabais Garcia">   
         
         <!-- Bootstrap CDNs -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
