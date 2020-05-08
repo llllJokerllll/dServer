@@ -11,14 +11,16 @@ include_once 'views/theme/menu.php';
   				<div class="col-md-9">
   					<h1>Modificar categoría de produto # <?=$categoria->getId()?></h1>
     				<form class="form-group" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
-                        <label for="nome">Nome </label><input class="form-control" type="text" name="nome" value="<?=$categoria->getNome()?>" minlength="1" maxlength="50" required><br>
-                        <label for="descricion">Descrición </label><textarea class="form-control" type="text" name="descricion" value="<?=$categoria->getDescricion()?>"></textarea><br>
+                        <label for="nome">Nome </label>
+                        <input class="form-control" type="text" name="nome" value="<?=$categoria->getNome()?>" minlength="1" maxlength="50" required><br>
+                        <label for="descricion">Descrición </label>
+                        <textarea class="form-control" type="text" maxlength="200" name="descricion"><?=$categoria->getDescricion()?></textarea><br>
                         <input type="checkbox" name="estado" value="1" <?=$categoria->getActivado() == 1 ? " checked" : ""?>>
                         <label> Activo</label><br>
             
             			<input type="hidden" name="id" value="<?=$categoria->getId()?>">
                         <button type="submit" class="btn btn-success" name="envio" value="1">Modificar</button>
-                        <button type="reset" class="btn btn-warning" name="borrar">Borrar</button>
+                        <button type="reset" class="btn btn-warning">Borrar</button>
                     </form>
                     <?php
     }

@@ -28,7 +28,7 @@ include_once 'views/theme/menu.php';
                                 echo "<td>".$produto->getDescricion()."</td>";
                                 $categoria = $cDao->get($produto->getIdCategoriaProduto());
                                 echo "<td>".$categoria->getNome()."</td>";
-                                echo "<td>".(!$produto->getActivado() ? "<i style='color: red;' class='fas fa-check'></i>" : "<i style='color: green;' class='fas fa-check'></i>") . "</td>";
+                                echo "<td>".(!$produto->getActivado() ? "<i style='color: red;' class='fas fa-times'></i>" : "<i style='color: green;' class='fas fa-check'></i>") . "</td>";
                                 echo "<td><a href='eliminarProdutos.php?id=".$produto->getId()."' onclick='return confirm(\"¿Estás seguro?\")'>Eliminar</a> <a href='modificarProdutos.php?id=".$produto->getId()."'>Editar</a></td>";
                                 echo "</tr>";
                             }

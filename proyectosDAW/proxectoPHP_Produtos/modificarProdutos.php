@@ -27,13 +27,13 @@ include_once 'views/theme/menu.php';
                             
                         </select><br>
                         <label for="descricion">Descrición </label>
-                        <textarea class="form-control" type="text" name="descricion" value="<?=$produto->getDescricion()?>"></textarea><br>
+                        <textarea class="form-control" type="text" name="descricion" maxlength="200"><?=$produto->getDescricion()?></textarea><br>
                         <input type="checkbox" name="estado" value="1" <?=$produto->getActivado() == 1 ? " checked" : ""?>>
                         <label> Activo</label><br>
                 
                 		<input type="hidden" name="id" value="<?=$produto->getId()?>">
                         <button type="submit" class="btn btn-success" name="envio" value="1">Modificar</button>
-                        <button type="reset" class="btn btn-warning" name="borrar">Borrar</button>
+                        <button type="reset" class="btn btn-warning">Borrar</button>
                     </form>
                     <?php
     }

@@ -22,7 +22,7 @@ include_once 'views/theme/menu.php';
                             echo "<td>".$categoria->getId()."</td>";
                             echo "<td>".$categoria->getNome()."</td>";
                             echo "<td>".$categoria->getDescricion()."</td>";
-                            echo "<td>".(!$categoria->getActivado() ? "<i style='color: red;' class='fas fa-check'></i>" : "<i style='color: green;' class='fas fa-check'></i>") . "</td>";
+                            echo "<td>".(!$categoria->getActivado() ? "<i style='color: red;' class='fas fa-times'></i>" : "<i style='color: green;' class='fas fa-check'></i>") . "</td>";
                             echo "<td><a href='" . ($produtos == 0 ? "eliminarCategoriaProdutos.php?id=" . $categoria->getId() . "' onclick='return confirm(\"¿Estás seguro?\")'" : "#' class='desactivado' onclick='alert(\"Primeiro debes borrar os produtos asociados a categoría elexida\")'") . ">Eliminar</a> <a href='modificarCategoriaProdutos.php?id=" . $categoria->getId() . "'>Editar</a></td>";
                             echo "</tr>";
                         }
