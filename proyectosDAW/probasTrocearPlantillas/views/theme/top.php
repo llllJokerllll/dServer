@@ -8,7 +8,7 @@ session_start();
         <meta http-equiv="X-UA-Compatible" content="IE=edge">    
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>&bull; Plantilla PHP &bull;  	</title>
-        <link rel="icon" type="image/png" sizes="64x64" href="theme/favicon.png"/>	
+        <link rel="icon" type="image/png" sizes="64x64" href="views/theme/favicon.png"/>	
         <meta name="description" content="Plantilla básica para DAWDUAL">
         <meta name="author" content="Jose Manuel Sabaris Garcia">   
         
@@ -19,7 +19,7 @@ session_start();
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 		<!-- Fin Bootstrap CDNs --> 
 		<!-- Estilos propios -->
-		<link rel="stylesheet" href="theme/css/estilos.css">
+		<link rel="stylesheet" href="views/theme/css/estilos.css">
 		
   	</head>
   	<body>
