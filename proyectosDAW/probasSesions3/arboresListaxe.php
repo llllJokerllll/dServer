@@ -55,7 +55,7 @@
 							    foreach ($_SESSION["arbores"] as $key => $a) {
 							        $a = unserialize($a);
 							        echo "<tr><td>{$a->getNomeComun()}</td><td>{$a->getNomeLatino()}</td><td>{$a->getAlturaMaxima()}</td>";
-							        echo "<td><a href='arboresForm.php?accion=eliminar&idArbore={$key}' tittle='Eliminar' onclick='return confirm('Estás seguro de eliminar?');'>Eliminar</a></td>";
+							        echo "<td><a href='arboresForm.php?accion=eliminar&idArbore={$key}' title='Eliminar' onclick='return confirm('Estás seguro de eliminar?');'>Eliminar</a></td>";
 							        echo "</tr>";
 							    }
 							    echo "</table>";
