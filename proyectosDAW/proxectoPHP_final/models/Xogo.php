@@ -11,7 +11,7 @@ class Xogo
     private $imagen;
     private $online;
 
-    public function __construct($nome = "", $plataforma = 0, $descricion = "", $ano = "", $imagen = "", $online = false)
+    public function __construct($nome = "", $plataforma = "", $descricion = "", $ano = 0, $imagen = "", $online = false)
     {
         $this->nome = $nome;
         $this->plataforma = $plataforma;

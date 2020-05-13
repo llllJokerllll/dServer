@@ -1,6 +1,6 @@
 <?php
-    include_once 'top.php';
-    include_once 'menu.php';
+include_once 'views/theme/top.php';
+include_once 'views/theme/menu.php';
 ?>
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
@@ -16,7 +16,7 @@
                 $usuario = new User($_POST["user"], $_POST["pass"]);
                 if ($uDAO->comprobarDatosUsuario($usuario)) {
                     session_regenerate_id();                       
-                    $_SESSION['loged_user'] = $usuario->getNome();
+                    $_SESSION['loged_user'] = $usuario->getNomeCompleto();
                     header("location: index.php");
                 } else {
                     echo "Nome de usuario ou contrasinal inválidas";
@@ -24,5 +24,5 @@
             }
         ?>
 <?php
-    include_once 'bottom.php';
+include_once 'views/theme/bottom.php';
 ?>

@@ -20,7 +20,7 @@
           					} else if ($paxina == "listarXogos.php") {
           					    $xogos = "activo";
           					}
-                            if (!empty($_SESSION['usuario'])) {
+                            if (!empty($_SESSION['loged_user'])) {
                                 if ($paxina) {
                                     echo "<li class='$index'><a href='index.php'>INICIO</a></li>";
                                     echo "<li class='$about'><a href='about.php'>ABOUT</a></li>";
@@ -38,8 +38,13 @@
   					</ul>
   				</div>
   				<div class="col-sm-3">
-  					<?php if (!empty($_SESSION['usuario'])) {
-  					    echo "Hola " . $_SESSION['usuario'];
+  					<?php 
+  					setlocale(LC_ALL, 'es_ES');
+  					$idioma = isset($_COOKIE["idioma"]) ? "Idioma: " . $_COOKIE["idioma"] : "";
+  					echo $idioma . "<br>";
+  					echo date('d/m/Y') . " " . date('h:i:s');
+  					if (!empty($_SESSION['loged_user'])) {
+  					    echo "<br>Hola " . $_SESSION['loged_user'];
   					}
   					?>
   				</div>

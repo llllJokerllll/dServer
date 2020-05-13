@@ -3,8 +3,9 @@ class UserDAO {
     
     public function comprobarDatosUsuario(&$user) {
         
+        $conexion = ConexionBD::obterConexion();
         try {
-            $sql = "SELECT username, nome FROM user WHERE username LIKE ? AND password LIKE ?";
+            $sql = "SELECT username, nomeCompleto FROM usuario WHERE username LIKE ? AND password LIKE ?";
             
             $stmt = $conexion->prepare($sql);
             $stmt->bindValue(1, $user->getUsername());
@@ -14,7 +15,7 @@ class UserDAO {
             $resultset = $stmt->fetchAll(PDO::FETCH_OBJ);
             if ($stmt->rowCount() > 0) {
                 $userAux = current($resultset);
-                $user->setNome($userAux->getNome());
+                $user->setNomeCompleto($userAux->nomeCompleto);
                 $user->setPassword("");
                 return true;
             } else {

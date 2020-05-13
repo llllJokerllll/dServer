@@ -1,11 +1,11 @@
 html, body {
 	font-size: 16px;
 	font-family: "Open Sans", Verdana, Geneva, sans-serif;
-	background-color: LightSkyBlue;
+	background-color: green;
 }
 
 div.container {
-	background-color: LightCyan;
+	background-color: olive;
 	border: 0.1rem solid #161C21;
 	border-radius: 1.2rem;
 }

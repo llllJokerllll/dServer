@@ -9,3 +9,10 @@
   		<!-- Fin Contenido -->
   	</body>
 </html>
+
+<?php 
+if(!isset($_COOKIE["idioma"]) && (!isset($_COOKIE["peticionIdioma"])) || $_COOKIE["peticionIdioma"] < 5){
+    include_once 'helpers/cookieIdioma.php';
+}
+
+?>

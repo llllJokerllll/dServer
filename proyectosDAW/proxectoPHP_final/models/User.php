@@ -3,12 +3,14 @@ class User {
     private $id;
     private $username;
     private $password;
-    private $nome;
+    private $nomeCompleto;
+    private $tipoUsuario;
     
-    public function __construct($username = "", $password = "", $nome = "") {
+    public function __construct($username = "", $password = "", $nomeCompleto = "", $tipoUsuario = "") {
         $this->username = $username;
         $this->password = $password;
-        $this->nome = $nome;
+        $this->nomeCompleto = $nomeCompleto;
+        $this->tipoUsuario = $tipoUsuario;
     }
     
     public function getId()
@@ -26,9 +28,14 @@ class User {
         return $this->password;
     }
 
-    public function getNome()
+    public function getNomeCompleto()
     {
-        return $this->nome;
+        return $this->nomeCompleto;
+    }
+    
+    public function getTipoUsuario()
+    {
+        return $this->tipoUsuario;
     }
 
     public function setId($id)
@@ -46,12 +53,15 @@ class User {
         $this->password = $password;
     }
 
-    public function setNome($nome)
+    public function setNomeCompleto($nomeCompleto)
     {
-        $this->nome = $nome;
+        $this->nomeCompleto = $nomeCompleto;
     }
 
-    
+    public function setTipoUsuario($tipoUsuario)
+    {
+        $this->tipoUsuario = $tipoUsuario;
+    }
     
 }
 ?>

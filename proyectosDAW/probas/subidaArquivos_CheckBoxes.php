@@ -110,12 +110,12 @@
                     
                     $rutaSubida = CARTAFOL_IMAXES . basename($_FILES["imaxe"]["name"]);
                     $extensionImaxe = strtolower(pathinfo($rutaSubida, PATHINFO_EXTENSION));
-                    if ($extensionImaxe == ".jpg" || $extensionImaxe == ".png") {
+                    //if ($extensionImaxe == ".jpg" || $extensionImaxe == ".png") {
                         //if ($_FILES["imaxe"]["size"] < 200000000) {
                             move_uploaded_file($_FILES["imaxe"]["tmp_name"], $rutaSubida);
                             print_r($_FILES["imaxe"]);
                         //}
-                    }
+                    //}
                     
                     require_once 'includes/utilidades.php';
                             

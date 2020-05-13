@@ -72,7 +72,7 @@
 
 <?php 
 if(!isset($_COOKIE["color"]) && (!isset($_COOKIE["peticionColor"])) || $_COOKIE["peticionColor"] < 5){
-    include_once 'cookieColor_2.php';
+    include_once 'includes/cookieColor_2.php';
 }
 
 ?>
