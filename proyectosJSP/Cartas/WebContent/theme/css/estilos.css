@@ -1,0 +1,52 @@
+html, body {
+	font-size: 16px;
+	font-family: "Open Sans", Verdana, Geneva, sans-serif;
+	background-color: LightSkyBlue;
+}
+
+div.container {
+	background-color: LightCyan;
+	border: 0.1rem solid #161C21;
+	border-radius: 1.2rem;
+}
+
+/*
+Cabeza
+*/
+div.container > div:nth-child(1) {
+	color: #161C21;
+	border-bottom: 1px solid #161C21;
+}
+
+/*
+Pe
+*/
+div.container > div:nth-child(3) {
+	color: #161C21;
+	border-top: 1px solid #161C21;
+	font-size: 90%;
+	font-style: italic;
+}
+
+/*
+Menu
+*/
+#menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#menu li {
+	display: inline-block;	
+}
+
+#menu li a {
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 0.3rem;
+}
+
+#menu li:first-child a{
+	padding-left: 0;
+}
