@@ -18,6 +18,7 @@
 		<!-- Fin Bootstrap CDNs --> 
 		<!-- Estilos propios -->
 		<link rel="stylesheet" href="theme/css/estilos.css">
+		<link rel="stylesheet" href="theme/css/maisEstilos.css">
 		
   	</head>
   	<body>
