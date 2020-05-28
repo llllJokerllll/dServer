@@ -16,10 +16,25 @@
   	<servlet-class>com.acarballeira.controller.ProbaServlet</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>DestinoServlet</servlet-name>
+  	<servlet-class>com.acarballeira.controller.DestinoServlet</servlet-class>
+  </servlet>
+  
   <!-- Mapeo de servlets -->
   <servlet-mapping>
   	<servlet-name>ProbaServlet</servlet-name>
   	<url-pattern>/index.jsp</url-pattern>
   	<url-pattern>/indexito.jsp</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>DestinoServlet</servlet-name>
+  	<url-pattern>/destino.jsp</url-pattern>
+  </servlet-mapping>
+  
+  <error-page>
+  		<error-code>404</error-code>
+  		<location>/WEB-INF/errorpages/paginaErro404.jsp</location>
+   </error-page>
 </web-app>

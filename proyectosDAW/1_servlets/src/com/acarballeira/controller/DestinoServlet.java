@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ProbaServlet extends HttpServlet implements Serializable {
+public class DestinoServlet extends HttpServlet implements Serializable {
 
 	/**
 	 * 
@@ -28,11 +28,8 @@ public class ProbaServlet extends HttpServlet implements Serializable {
 		PrintWriter out = resp.getWriter();
 		out.println("<!DOCTYPE html>");
 		out.println("<html lang='es'>");
-		out.println("<head><title>Servlet 1</title></head>");
-		out.println("<body>");
-		out.println("<p>Ola</p>");
-		out.println("<a href='destino.jsp'>Ir a destino</a>");
-		out.println("</body>");
+		out.println("<head><title>Servlet 2</title></head>");
+		out.println("<body><p>Ola dende destino</p></body>");
 		out.println("</html>");
 		out.close();
 	}
