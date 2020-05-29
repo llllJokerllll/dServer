@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#menuLateral {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.activo {
+	text-decoration: underline;
+	color: IndianRed;
+}

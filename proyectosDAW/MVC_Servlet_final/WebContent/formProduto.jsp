@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.acarballeira.model.Produto" %>
+<%@ include file="theme/top.jsp" %>
+<%@ include file="theme/menu.jsp" %>	
+<%@ page import="com.acarballeira.model.Produto , com.acarballeira.model.ProdutoDAO , java.util.ArrayList" %>	
+  			
+  			<!-- Medio -->
+  			<div class="row my-2">
+  				<div class="col-md-9">  					
+  					<%
+  						Produto p = (Produto)request.getAttribute("produto");
+  					%>
+  					<h1><%= p == null ? "Creación de Produto" : "Actualización de Produto"%></h1>
+  						<!-- Conto coa variable de produto p -->
     				
-    				<!-- Conto coa variable de produto p -->
-    				
-					<form action="createProduto" method="POST" class="mb-3">
+					<form action="<%= p == null ? "createProduto" : "updateProduto"%>" method="POST" class="mb-3">
   						<div class="form-row">
   							<div class="form-group col-sm-6">
   								<label for="nome">Nome</label>
@@ -29,11 +38,23 @@
   							<label for="descricion">Descrición</label>
   							<textarea class="form-control" id="descricion" name="descricion" maxlength="300"><%= p != null ? p.getDescricion() : "" %></textarea>
   						</div>
-  						<%
-  							if (p != null) {
-  								out.println("<input type='hidden' name='id' value='" + p.getId() + "'/>");
-  							}
-  						%>
+
+						<%
+							if (p != null) {
+								out.println("<input type='hidden' name='id' value='" + p.getId() + "'/>");
+							}
+						%>
+
   						<button type="submit" name="envio" class="btn btn-primary">Enviar</button>
   						<button type="reset" class="btn btn-warning">Eliminar</button>
   					</form>
+
+  				</div>
+  				<div class="col-md-3">
+  					<h2>Lateral</h2>
+					<%@ include file="menuLateral.jsp" %>
+  				</div>
+  			</div>
+  			<!-- Fin Medio -->
+  			
+<%@ include file="theme/bottom.jsp" %>

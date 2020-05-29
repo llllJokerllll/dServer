@@ -9,4 +9,29 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <env-entry>
+  	<env-entry-name>userBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>root</env-entry-value>
+  </env-entry>
+  <env-entry>
+  	<env-entry-name>passwordBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value></env-entry-value>
+  </env-entry>
+  <env-entry>
+  	<env-entry-name>hostBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>localhost</env-entry-value>
+  </env-entry>
+  <env-entry>
+  	<env-entry-name>portBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>3306</env-entry-value>
+  </env-entry>
+  <env-entry>
+  	<env-entry-name>nomeBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>produtos1</env-entry-value>
+  </env-entry>
 </web-app>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>MVC_Servlet_final</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Rexistro de servlets. Pódese facer con anotacións -->
+  <servlet>
+  	<servlet-name>InicioServlet</servlet-name>
+  	<servlet-class>com.acarballeira.controller.InicioServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CreateProdutoServlet</servlet-name>
+  	<servlet-class>com.acarballeira.controller.CreateProdutoServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteProdutoServlet</servlet-name>
+  	<servlet-class>com.acarballeira.controller.DeleteProdutoServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdateProdutoServlet</servlet-name>
+  	<servlet-class>com.acarballeira.controller.UpdateProdutoServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ListProdutoServlet</servlet-name>
+  	<servlet-class>com.acarballeira.controller.ListProdutoServlet</servlet-class>
+  </servlet>
+  
+  <!-- Mapeo das URLs -->
+  <servlet-mapping>
+  	<servlet-name>InicioServlet</servlet-name>
+  	<url-pattern>/inicio</url-pattern>
+  	<url-pattern>/portada</url-pattern>
+  	<url-pattern>/index</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateProdutoServlet</servlet-name>
+  	<url-pattern>/createProduto</url-pattern>
+  	<url-pattern>/formNewProduto</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteProdutoServlet</servlet-name>
+  	<url-pattern>/deleteProduto</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateProdutoServlet</servlet-name>
+  	<url-pattern>/updateProduto</url-pattern>
+  	<url-pattern>/formUpdateProduto</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ListProdutoServlet</servlet-name>
+  	<url-pattern>/listProduto</url-pattern>
+  </servlet-mapping>
+</web-app>
