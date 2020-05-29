@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>Examen_MVC_JSP_JMS</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Author da páxina -->
+  <env-entry>
+    <env-entry-name>author1</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>Jose Manuel Sabarís García</env-entry-value>
+  </env-entry>
+  
+  <!-- Datos de acceso a la BD -->
+  <env-entry>
+  	<env-entry-name>userBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>root</env-entry-value>
+  </env-entry>
+  <env-entry>
+  	<env-entry-name>passwordBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value></env-entry-value>
+  </env-entry>
+  <env-entry>
+  	<env-entry-name>hostBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>localhost</env-entry-value>
+  </env-entry>
+  <env-entry>
+  	<env-entry-name>portBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>3306</env-entry-value>
+  </env-entry>
+  <env-entry>
+  	<env-entry-name>nomeBD</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>dwcsbrowsing</env-entry-value>
+  </env-entry>
+	
+</web-app>
